@@ -1,0 +1,85 @@
+
+/*Diseno menu header y home INICIO*/
+header{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+header nav{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.603);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    position: absolute;
+}
+
+header nav .list-menu{
+    margin: 10px 30px 0px 20px;
+    padding-bottom: 5px;
+    list-style: none;
+}
+
+header nav .list-menu a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.0rem;
+    letter-spacing: 2px;
+}
+
+/*Menu hover effect*/
+
+.menu{
+    border: none;
+    color: #ffffff;
+    outline: none;
+    padding: 1px 30px 1px;
+    position: relative;
+}
+
+.menu:before,.menu:after {
+    border: 0 solid transparent;
+    transition: all 0.25s;
+    content: '';
+    height: 24px;
+    position: absolute;
+    width: 24px;
+}
+
+.menu:before {
+    border-top: 1px solid #ffffff;
+    left: 0px;
+    top: -5px;
+}
+
+.menu:after {
+    border-bottom: 1px solid #ffffff;
+    bottom: -5px;
+    right: 0px;
+}
+
+
+.menu:hover:before,.menu:hover:after {
+    height: 100%;
+    width: 100%;
+}
+
+/*Menu hover effect fin*/
+
+/*diseno redes ico*/
+.redes{
+    width: 100%;
+    display: flex;
+    position: absolute;
+}
+
+.home-img img{
+    width: 100%;
+    height: 100vh;
+}
+
+/*Diseno menu header y home FIN*/
