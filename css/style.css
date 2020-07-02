@@ -1,4 +1,7 @@
-
+body{
+    box-sizing: border-box;
+    background-color: #d3d3d386;
+}
 /*Diseno menu header y home INICIO*/
 header{
     width: 100%;
@@ -72,8 +75,8 @@ header nav .list-menu a{
 
 /*diseno redes ico*/
 .redes{
-    width: 100%;
     display: flex;
+    margin-top: 1rem;
     position: absolute;
 }
 
@@ -83,3 +86,103 @@ header nav .list-menu a{
 }
 
 /*Diseno menu header y home FIN*/
+
+
+/*diseno de los menus de comida inicio*/
+
+    /*platos fuertes*/
+.menu-food{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+.menu-food h1{
+    width: 20%;
+    text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 4rem;
+    border: solid 5px black;
+    margin: auto;
+    margin-top: 2rem;
+}
+
+.menu-food h2{
+    text-decoration: underline goldenrod;
+    width: 20%;
+    text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 2rem;
+    margin: auto;
+    padding: 6rem 0rem 3rem 0rem;
+    font-family: 'Yellowtail', cursive;
+    letter-spacing: 5px;
+}
+
+.plato-fuerte{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-food{
+    background-color: white;
+}
+.plato-fuerte .card-food{
+    width: 25%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.603);
+    margin: 60px;
+}
+
+.plato-fuerte .card-food img{
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.plato-fuerte .info-card-food{
+    width: 70%;
+    margin: auto;
+    padding-bottom: 0.1rem;
+}
+
+    /*entradas*/
+
+
+.entradas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.entradas .card-food{
+    width: 20%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.603);
+    margin: 60px;
+}
+
+.entradas .card-food img{
+    width: 100%;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.entradas .info-card-food{
+    width: 70%;
+    margin: auto;
+    padding-bottom: 0.1rem;
+}
+/*diseno de los menus de comida fin*/
+
+/*diseno bebidas inicio*/
+
+.entradas .card-food .bebidas-img{
+    width: 60%;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom: solid 1px black;
+}
+
+/*diseno bebidas fin*/
