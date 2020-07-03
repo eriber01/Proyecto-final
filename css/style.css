@@ -186,3 +186,27 @@ header nav .list-menu a{
 }
 
 /*diseno bebidas fin*/
+
+/*diseo fotter*/
+
+footer{
+    height: 15rem;
+    text-align: center;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    background-color: #000000;
+    background-color: #000000;
+}
+
+.contactos{
+    display: flex;
+    flex-direction: column;
+    line-height: 28px;
+}
+.working-hours{
+    line-height: 30px;
+}
