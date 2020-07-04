@@ -127,8 +127,12 @@ header nav .list-menu a{
 }
 
 .card-food{
+    transition: all 600ms ease-in-out;
+    overflow: hidden;
     background-color: white;
+    z-index: 1;
 }
+
 .plato-fuerte .card-food{
     width: 25%;
     border-radius: 5px;
@@ -136,7 +140,7 @@ header nav .list-menu a{
     margin: 60px;
 }
 
-.plato-fuerte .card-food img{
+.plato-fuerte .card-food .comida-img{
     width: 100%;
     border-radius: 5px 5px 0px 0px;
 }
@@ -187,6 +191,36 @@ header nav .list-menu a{
 
 /*diseno bebidas fin*/
 
+
+/*diseno agregar al carrito inicio*/
+
+.agregar-carrito{
+    width: 25%;
+    height: 36%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.336);
+    color: black;
+    font-size: 1.5rem;
+    font-family: 'Libre Baskerville', serif;
+    text-decoration: underline goldenrod;
+    opacity: 0;
+
+    transition: all 500ms ease;
+}
+
+.no{
+    opacity: 1;
+}
+.agregar-carrito .agregar-img{
+    cursor: pointer;
+    width: 20%;
+}
+
+/*diseno agregar al carrito fin*/
 /*diseo fotter*/
 
 footer{
