@@ -13,19 +13,53 @@
 <body>
     <header>
         <nav>
-            <li class="list-menu"><a class="menu" href="#">INICIO</a></li>
-            <li class="list-menu"><a class="menu" href="#">CONTACTOS</a></li>
-            
-            <button>Login</button>
+            <div class="menu-list">    
+                <li class="list-menu"><a class="menu" href="#">INICIO</a></li>
+                <li class="list-menu"><a class="menu" href="#">CONTACTOS</a></li>
+            </div>
+
+            <div class="log-carrito">
+                <button class="log-btn">Login</button>
+                
+                <div class="container-carrito" >
+                    <ul>
+                        <li class="carrito-view">
+                            <img src="img/ico/carrito-icono.png" alt="">
+                            <div id="carrito">
+                                <table id="lista-carrito">
+                                    <thead>
+                                        <tr>
+                                            <th>Plato</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <span>Primer plato-fuerte</span>
+                                            </td>
+                                            <td>
+                                                <span>Segundo plato-fuerte</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span>Primero precio</span>
+                                            </td>
+                                            <td>
+                                                <span>Segundo Precio</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <button class="log-btn">Login</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
 
-        <div class="redes">
-            <li><img src="img/ico/facebook.png" alt=""></li>
-            <li><img src="img/ico/instagram.png" alt=""></li>
-            <li><img src="img/ico/twitter.png" alt=""></li>
-        </div>
-            
-        
         <div class="home-img">
             <img src="img/home-img-2-redux.jpg" alt="">
         </div>
@@ -197,7 +231,7 @@
             <Span>Telefonos: 809-123-1234</Span>
             <span>Direccion: Santo Domingo Este, Republica Dominicana</span>
         </div>
-
+        
         <span>2020 © Restaurante Todos los Derechos Reservados</span>
 
         <div class="working-hours">
@@ -209,8 +243,7 @@
             <span>Sabados y Domingos</span>
             <span>12:00 Pm a 12:00 Am</span>
         </div>
-        
-        
+
     </footer>
 
     <script src="main/main.js"></script>

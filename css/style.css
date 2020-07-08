@@ -9,7 +9,7 @@ header{
     text-align: center;
 }
 
-header nav{
+header nav .menu-list{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -24,6 +24,8 @@ header nav .list-menu{
     margin: 10px 30px 0px 20px;
     padding-bottom: 5px;
     list-style: none;
+
+    z-index: 2;
 }
 
 header nav .list-menu a{
@@ -70,15 +72,65 @@ header nav .list-menu a{
     height: 100%;
     width: 100%;
 }
-
 /*Menu hover effect fin*/
 
-/*diseno redes ico*/
-.redes{
-    display: flex;
-    margin-top: 1rem;
+
+/*diseno carrito inicio*/
+
+.log-carrito{
+    width: 90%;
+    height: 8%;
     position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    list-style: none;
 }
+
+.log-carrito .log-btn{
+    border: none;
+    outline: none;
+    width: 8%;
+    height: 60%;
+    border-radius: 5px;
+    cursor: pointer;
+
+    transition: all 200ms ease-in-out;
+}
+
+.log-btn:hover{
+    transform: scale(1.05);
+}
+
+.container-carrito{
+    height: 100%;
+}
+
+
+.carrito-view #carrito{
+    display: none;
+}
+
+
+.carrito-view:hover #carrito{
+    display: flex;
+    justify-content: center;
+    width: 30%;
+    right: 0;
+    top: 100%;
+    z-index: 3;
+    position: absolute;
+    background-color: white;
+    color: black;
+    line-height: 30px;
+}
+
+.log-carrito li{
+    list-style: none;
+}
+
+/*diseno carrito fin*/
 
 .home-img img{
     width: 100%;
@@ -224,7 +276,7 @@ header nav .list-menu a{
 /*diseo fotter*/
 
 footer{
-    height: 15rem;
+    height: 20rem;
     text-align: center;
     font-size: 1.1rem;
     display: flex;
@@ -243,4 +295,12 @@ footer{
 }
 .working-hours{
     line-height: 30px;
+}
+
+/*diseno redes ico*/
+.redes{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+
 }
