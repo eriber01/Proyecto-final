@@ -55,3 +55,31 @@ function MostrarAgregarCarrito(){
 }
 
 
+//controla el boton de ir hacia arriba
+
+    //analiza el scroll para hacer visible el boton
+window.onscroll = function(){
+    if(document.documentElement.scrollTop > 100){
+        document.querySelector('#scroll-up').classList.add('display-up');
+    }else{
+        document.querySelector('#scroll-up').classList.remove('display-up');
+    }
+}
+
+
+//boton arriba
+Subir_o_Bajar('#scroll-up', 0)
+
+//boton nosotros
+Subir_o_Bajar("#nosotros", 9999999999999999999)
+
+
+//logica de subir o bajar
+function Subir_o_Bajar(clase, distacia){
+    document.querySelector(clase).addEventListener('click', function(){
+        window.scrollTo({
+            top: distacia,
+            behavior: 'smooth'
+        })
+    })
+}
