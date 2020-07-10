@@ -14,17 +14,28 @@
     <header>
         <nav>
             <div class="menu-list">    
-                <li class="list-menu"><a class="menu" href="#">INICIO</a></li>
+                <li class="list-menu"><a id="inicio" class="menu" href="#">INICIO</a></li>
                 <li class="list-menu"><a class="menu" href="#">CONTACTOS</a></li>
             </div>
 
             <div class="log-carrito">
-                <button class="log-btn">Login</button>
+                <button id="btn-login" class="log-btn">Login</button>
+
+                <form id="form-login" action="" autocomplete="off">
+                    
+                    <label for="user">Usuario</label>
+                    <input type="text" placeholder="user" id="user">
+                    
+                    <label for="pass">Contraseña</label>
+                    <input type="password" name="" id="pass" placeholder="Password">
+
+                    <input id="btn-acceder" type="submit" value="Acceder">
+                </form>
                 
                 <div class="container-carrito" >
                     <ul>
                         <li class="carrito-view">
-                            <img src="img/ico/carrito-icono.png" alt="">
+                            <img id="carrito-btn-view" src="img/ico/carrito-icono.png" alt="">
                             <div id="carrito">
                                 <table id="lista-carrito">
                                     <thead>
@@ -39,12 +50,12 @@
                                                 <span>Primer plato-fuerte</span>
                                             </td>
                                             <td>
-                                                <span>Segundo plato-fuerte</span>
+                                                <span>Primero precio</span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>
-                                                <span>Primero precio</span>
+                                                <span>Segundo plato-fuerte</span>
                                             </td>
                                             <td>
                                                 <span>Segundo Precio</span>
@@ -52,7 +63,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button class="log-btn">Login</button>
+                                <button class="ordenar-btn">Ordenar</button>
                             </div>
                         </li>
                     </ul>
@@ -81,7 +92,7 @@
                         <span>Agregar al carrito</span>
                     </div>
 
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -109,7 +120,7 @@
                         <span>Agregar al carrito</span>
                     </div>
 
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -123,7 +134,7 @@
                         <span>Agregar al carrito</span>
                     </div>
                     
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -137,8 +148,12 @@
             <div class="entradas">
 
                 <div class="card-food">
-                    
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <div class="agregar-carrito min">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -146,7 +161,13 @@
                 </div>
     
                 <div class="card-food">
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <div class="agregar-carrito min">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -154,7 +175,13 @@
                 </div>
 
                 <div class="card-food">
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <div class="agregar-carrito min">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -162,7 +189,13 @@
                 </div>
 
                 <div class="card-food">
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <div class="agregar-carrito min">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -170,7 +203,13 @@
                 </div>
 
                 <div class="card-food">
-                    <img class="comida-img" src="/img/pollo a la teriyaki.jpg" alt="">
+                    <div class="agregar-carrito min">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="comida-img" src="img/pollo a la teriyaki.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Pollo a la terillaqui</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet segundo.</p>
@@ -184,7 +223,13 @@
             <div class="entradas">
 
                 <div class="card-food">
-                    <img class="bebidas-img" src="/img/vinos/daroush-signature-cabernet-.jpg" alt="">
+                    <div class="agregar-carrito drink">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="bebidas-img" src="img/vinos/daroush-signature-cabernet-.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Darioush Cabernet Sauvignon</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor.</p>
@@ -192,7 +237,13 @@
                 </div>
     
                 <div class="card-food">
-                    <img class="bebidas-img" src="/img/vinos/daroush-signature-cabernet-.jpg" alt="">
+                    <div class="agregar-carrito drink">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="bebidas-img" src="img/vinos/daroush-signature-cabernet-.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Darioush Cabernet Sauvignon</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor.</p>
@@ -200,7 +251,13 @@
                 </div>
 
                 <div class="card-food">
-                    <img class="bebidas-img" src="/img/vinos/daroush-signature-cabernet-.jpg" alt="">
+                    <div class="agregar-carrito drink">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="bebidas-img" src="img/vinos/daroush-signature-cabernet-.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Darioush Cabernet Sauvignon</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor.</p>
@@ -208,7 +265,13 @@
                 </div>
 
                 <div class="card-food">
-                    <img class="bebidas-img" src="/img/vinos/daroush-signature-cabernet-.jpg" alt="">
+                    <div class="agregar-carrito drink">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="bebidas-img" src="img/vinos/daroush-signature-cabernet-.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Darioush Cabernet Sauvignon</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor.</p>
@@ -216,7 +279,13 @@
                 </div>
 
                 <div class="card-food">
-                    <img class="bebidas-img" src="/img/vinos/daroush-signature-cabernet-.jpg" alt="">
+                    <div class="agregar-carrito drink">
+                        <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                        <br>
+                        <span>Agregar al carrito</span>
+                    </div>
+
+                    <img class="bebidas-img" src="img/vinos/daroush-signature-cabernet-.jpg" alt="">
                     <div class="info-card-food">
                         <h3>Darioush Cabernet Sauvignon</h3>
                         <p>Lorem ipsum dolor sit amet Lorem ipsum dolor.</p>
@@ -225,7 +294,9 @@
             </div>
     </div>
 
-
+    <div class="up">
+        <img src="img/ico/button-up.png" style="width: 3rem;" alt="">
+    </div>
     <footer>
         <div class="contactos">
             <Span>Telefonos: 809-123-1234</Span>
@@ -246,7 +317,7 @@
 
     </footer>
 
-    <script src="main/main.js"></script>
+    <script src="main/view-change.js"></script>
 
 </body>
 </html>
