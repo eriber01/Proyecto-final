@@ -36,7 +36,8 @@ header nav .list-menu a{
     letter-spacing: 2px;
 }
 
-@media (max-width: 600px){
+/*nav responsive*/
+@media (max-width: 650px){
     header nav .menu-list{
         display: flex;
         flex-direction: column;
@@ -47,7 +48,42 @@ header nav .list-menu a{
         flex-direction: row;
         justify-content: flex-end;
         width: 100%;
+    }
+
+    #btn-login{
         z-index: 20;
+    }
+
+    header nav #form-login{
+        top: 130%;
+    }
+
+    header nav .log-carrito{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        align-items: flex-end;
+        width: 97%;
+        margin-top: 3px;
+    }
+    header .carrito{
+        justify-content: center;
+        flex-direction: column;
+        width: 80%;
+        height: 10rem;
+        right: 0;
+        top: 120%;
+        z-index: 3;
+        position: absolute;
+        background-color: white;
+        color: black;
+        line-height: 30px;
+        border-radius: 5px;
+    }
+
+
+    header  .home-img img{
+        height: 70vh;
     }
 }
 
@@ -94,14 +130,10 @@ header nav .list-menu a{
 
 #form-login{
     display: none;
-}
-
-.mostrar-login{
-    display: flex !important;
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    width: 20%;
+    /* width: 20%; */
     height: 12rem;
     right: 0;
     top: 100%;
@@ -111,6 +143,10 @@ header nav .list-menu a{
     color: black;
     line-height: 30px;
     border-radius: 5px;
+}
+
+.mostrar-login{
+    display: flex !important;
 }
 
 /* #form-login a{
@@ -188,19 +224,22 @@ header nav .list-menu a{
     cursor: pointer;
 }
 
-#carrito{
+.carrito{
     display: none;
 }
 
 
 .mostrar-carrito{
     display: flex !important;
+}
+
+.carrito{
     justify-content: center;
     flex-direction: column;
     width: 30%;
     height: 10rem;
     right: 0;
-    top: 100%;
+    top: 120%;
     z-index: 3;
     position: absolute;
     background-color: white;
@@ -243,6 +282,40 @@ header nav .list-menu a{
 
 
 /*diseno de los menus de comida inicio*/
+    
+    /*card responsive*/
+@media (max-width: 650px){
+    body .menu-food h1{
+        width: 70%;
+    }
+
+    /*plato fuerte*/
+    .menu-food .plato-fuerte .card-food{
+        width: 50%;
+    }
+
+    /*entradas y bebidas*/
+
+    .menu-food .entradas .card-food{
+        width: 40%;
+    }
+
+    /*agregar carrito*/
+
+    .menu-food .plato-fuerte .agregar-carrito{
+        width: 50%;
+        height: auto;
+        font-size: 1rem;
+    }
+
+    .menu-food .entradas .agregar-carrito{
+        width: 40%;
+        height: 11%;
+        font-size: 1rem;
+    }
+}
+
+
 
     /*platos fuertes*/
 .menu-food{
@@ -262,7 +335,6 @@ header nav .list-menu a{
 
 .menu-food h2{
     text-decoration: underline goldenrod;
-    width: 20%;
     text-align: center;
     font-family: 'Libre Baskerville', serif;
     font-size: 2rem;
