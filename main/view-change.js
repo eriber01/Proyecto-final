@@ -23,8 +23,6 @@ btnLoginView.addEventListener('click', function(eve){
 const btnCarritoView =  document.querySelector('#carrito-btn-view')
 const CarritoView = document.querySelector('#carrito')
 
-
-
 btnCarritoView.addEventListener('click', function(eve){
     eve.preventDefault()
     CarritoView.classList.toggle('mostrar-carrito')

@@ -36,6 +36,20 @@ header nav .list-menu a{
     letter-spacing: 2px;
 }
 
+@media (max-width: 600px){
+    header nav .menu-list{
+        display: flex;
+        flex-direction: column;
+    }
+
+    header nav .log-carrito{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
 /*Menu hover effect*/
 
 .menu{
@@ -152,7 +166,7 @@ header nav .list-menu a{
 .log-carrito .log-btn{
     border: none;
     outline: none;
-    width: 8%;
+   /*  width: 8%; */
     height: 60%;
     border-radius: 5px;
     cursor: pointer;
