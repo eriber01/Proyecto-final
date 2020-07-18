@@ -173,7 +173,7 @@ header nav .list-menu a{
     outline: none;
 }
 
-#btn-acceder{
+#btn-acceder, #btn-salir{
     border: none !important;
     width: 40% !important;
     margin-top: 20px;
@@ -184,6 +184,10 @@ header nav .list-menu a{
 }
 
 #btn-acceder:hover{
+    transform: scale(1.05);
+}
+
+#btn-salir:hover{
     transform: scale(1.05);
 }
 /*diseno login fin*/
