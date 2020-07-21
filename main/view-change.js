@@ -15,6 +15,8 @@ btnLoginView.addEventListener('click', function(eve){
     eve.preventDefault()
     LoginView.classList.toggle('mostrar-login')
 
+    console.log(window.history.forward())
+
 })
 
 

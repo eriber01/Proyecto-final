@@ -19,7 +19,7 @@ var firebaseConfig = {
 //salir del sistema con firebase
 const btn_Logout = document.getElementById('btn-salir');
 
-btn_Logout.addEventListener('click', function(eve){
+    btn_Logout.addEventListener('click', function(eve){
     eve.preventDefault()
 
     firebase.auth().signOut()
@@ -50,6 +50,8 @@ function observador(){
 
         } else {
             console.log('no acceso')
+            alert('No estas logueado, Vuelva a la Pagina de inicio')
+            window.location = "index.html";
         }
     })
 }

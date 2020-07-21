@@ -78,3 +78,5 @@ function observador(){
 
 //llamada de la funcion observador
 observador()
+
+
