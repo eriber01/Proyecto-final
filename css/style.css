@@ -317,6 +317,7 @@ header nav .list-menu a{
         height: 11%;
         font-size: 1rem;
     }
+
 }
 
 
@@ -541,7 +542,7 @@ footer{
 
 .up{
     position: fixed;
-    bottom: 3%;
+    bottom: 41%;
     left: 95%;
     background-color: rgb(12, 122, 147);
     border-radius: 100% 100% 10% 100%;
@@ -565,12 +566,14 @@ footer{
 @media only screen and (max-width: 1100px) {
     .up{
         left: 90%;
+        bottom: 41%;
     }
 }
 
 @media only screen and (max-width: 724px) {
     .up{
         left: 80%;
+        bottom: 41%;
     }
 }
 
