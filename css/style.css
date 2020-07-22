@@ -542,7 +542,7 @@ footer{
 
 .up{
     position: fixed;
-    bottom: 41%;
+    bottom: 50%;
     left: 95%;
     background-color: rgb(12, 122, 147);
     border-radius: 100% 100% 10% 100%;
@@ -563,17 +563,17 @@ footer{
     display: block;
 }
 
-@media only screen and (max-width: 1100px) {
+@media (max-width: 1100px) {
     .up{
         left: 90%;
-        bottom: 41%;
+        bottom: 50%;
     }
 }
 
-@media only screen and (max-width: 724px) {
+@media (max-width: 724px) {
     .up{
         left: 80%;
-        bottom: 41%;
+        bottom: 50%;
     }
 }
 
