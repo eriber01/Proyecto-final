@@ -1,26 +1,40 @@
-/* const nombre =  document.getElementById('nombre-plato')
-const precio = document.getElementById('precio-plato') */
-/* const img = document.getElementById('img-plato') */
-/* const descri = document.getElementById('descripcion-plato')
-const form = document.getElementById('form-subir') */
+//variables para subir la info de los card
+const nombrePlato = document.getElementById('nombre-plato');
+const precioPlato = document.getElementById('precio-plato');
+const desPlato = document.getElementById('descripcion-plato');
+const form = document.getElementById('form-subir')
 
 
-
-// Your web app's Firebase configuration
-var firebaseConfig = {
+// Initialize Firebase
+firebase.initializeApp({
     apiKey: "AIzaSyBW0gEqdV5PVuNT_qaNLSuO3Scv6PNNb1o",
     authDomain: "proyecto-final-8285d.firebaseapp.com",
-    databaseURL: "https://proyecto-final-8285d.firebaseio.com",
-    projectId: "proyecto-final-8285d",
-    storageBucket: "proyecto-final-8285d.appspot.com",
-    messagingSenderId: "332592113776",
-    appId: "1:332592113776:web:89acc7d751aea01374ecb5",
-    measurementId: "G-DLW4PCDNLP"
-    };
+    projectId: "proyecto-final-8285d"
+});
+
+var db = firebase.firestore();
+
+
+
+form.addEventListener('submit', function(eve){
+    eve.preventDefault()
     
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    
+    /* var db = firebase.firestore(); */
+
+    db.collection("imagenes").add({
+        nombrePlato: nombrePlato.value,
+        precioPlato: precioPlato.value,
+        desPlato: desPlato.value
+    })
+    .then(function(docRef){
+        console.log('subido el id es', docRef.id)
+    })
+    .catch(function(error){
+        console.log('error al subir', error)
+    });
+})
+
+
 
 
 //salir del sistema con firebase
@@ -56,7 +70,7 @@ function observador(){
             var providerData = user.providerData;
 
         } else {
-            console.log('no acceso')
+        console.log('no acceso')
             alert('No estas logueado, Vuelva a la Pagina de inicio')
             window.location = "index.html";
         }

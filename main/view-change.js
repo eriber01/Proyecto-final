@@ -83,11 +83,3 @@ function Subir_o_Bajar(clase, distacia){
         })
     })
 }
-
-
-
-
-
-
-// impide que se navegue entre el historial del navegador
-
