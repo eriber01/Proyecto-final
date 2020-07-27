@@ -13,7 +13,7 @@ measurementId: "G-DLW4PCDNLP"
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+const db = firebase.firestore();
 
 // variables del form para acceder al sistema
 
@@ -78,5 +78,15 @@ function observador(){
 
 //llamada de la funcion observador
 observador()
+
+
+//carga los datos de cloud firestore al dom
+
+db.collection("imagenes").get().then((querySnapshot) => {
+    querySnapshot.forEach(function(doc){
+        console.log(doc.data());
+    })
+})
+
 
 
