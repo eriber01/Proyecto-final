@@ -24,10 +24,10 @@
                 <form id="form-login" action="" autocomplete="off">
                     
                     <label for="user">Usuario</label>
-                    <input type="text" placeholder="user" id="user">
+                    <input type="text" placeholder="user" value="admin@gmail.com" id="user">
                     
                     <label for="pass">Contraseña</label>
-                    <input type="password" name="" id="pass" placeholder="Password">
+                    <input type="password" name="" id="pass" value="admin123" placeholder="Password">
 
                     <input id="btn-acceder" type="submit" value="Acceder">
                     
@@ -81,7 +81,7 @@
     <div id="ViewDOM">
         <div class="card-food" v-for="cardfood in CardFood">
             <div class="agregar-carrito">
-                <p>Precio: <span>1200</span></p>
+                <p>Precio: <span>{{cardfood.precioPlato}}</span></p>
                 <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
                 <br>
                 <span>Agregar al carrito</span>
@@ -352,21 +352,23 @@
 
     </footer>
 
-
-
-
     <script src="main/view-change.js"></script>
 
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-firestore.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
 
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-
-
+    <script src="main/FirebaseInitializeApp.js"></script>
     <script src="main/FireBaseConectec.js"></script>
-    <script src="main/ViewDOM.js"></script>
+    <script src="main/VueDOM.js"></script><!-- 
+        <script src="main/VueImgDOM.js"></script> -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>

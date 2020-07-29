@@ -1,24 +1,31 @@
+/* const { url } = require("inspector"); */
+
 //varibles para subir la imagen
 const formulario = document.getElementById('form-subir');
 
-
-firebase.initializeApp({
-    apiKey: "AIzaSyBW0gEqdV5PVuNT_qaNLSuO3Scv6PNNb1o",
-    authDomain: "proyecto-final-8285d.firebaseapp.com",
-    databaseURL: "https://proyecto-final-8285d.firebaseio.com",
-    storageBucket: "proyecto-final-8285d.appspot.com"
-});
-
-
-
-// Servicios de APIs Firebase
+// variables y referencias de APIs Firebase
 var db = firebase.storage();
-
+var imgRef = firebase.database().ref().child('imgRef');
 
 //evento que dispara a funcion
 //formulario.addEventListener('submit', enviar)
 
 window.onload = function(){
+
+    imgRef.on("value", function(snapshot){
+        var imgData = snapshot.val();
+        
+/*         imgData.forEach(function(dataImg){
+            console.log(`datos de imagen ${dataImg.url}` )
+        }) */
+
+        for(var dataimg in imgData){
+            console.log(`url de imagen ${imgData[dataimg].url}, nombre de la imagen ${imgData[dataimg].nombre}` )
+        }
+
+        console.log(imgData)
+    })
+    
     /* var archivo =  */document.getElementById('img-plato').addEventListener('change', function(eve){
         eve.preventDefault()
 
@@ -34,7 +41,7 @@ function enviar(archivo) {
     // función que se encargará de subir el archivo
     function subirArchivo(archivo) {
         // referencia del lugar donde se guardara la imagen
-        var refStorage = db.ref('restaurante').child(archivo.name);
+        var refStorage = db.ref('restaurante/').child(archivo.name);
         // Comienzo la tarea de upload
         var uploadTask = refStorage.put(archivo);
 
@@ -45,30 +52,19 @@ function enviar(archivo) {
             },
             function(){
                 console.log('Subida completada');
+
+                var urlDescarga  = uploadTask.h.downloadURLs;
+                console.log(uploadTask.h.downloadURLs)
+                crearRefereciaIMG(archivo.name, urlDescarga);
             }
         );
     }
 }
 
 
-function observador(){
-    firebase.auth().onAuthStateChanged(function(user){
-        if(user){
-
-            console.log(firebase.auth())
-            console.log('acceso')
-            var displayName = user.displayName;
-            var email = user.email;
-            var emailVerified = user.emailVerified;
-            var photoURL = user.photoURL;
-            var isAnonymous = user.isAnonymous;
-            var uid = user.uid;
-            var providerData = user.providerData;
-
-        } else {
-            console.log('no acceso')
-            alert('No estas logueado, Vuelva a la Pagina de inicio')
-            window.location = "index.html";
-        }
-    })
+function crearRefereciaIMG(nameImg, urlDescarga){
+    imgRef.push({
+        nombre: nameImg,
+        url: urlDescarga
+    });
 }

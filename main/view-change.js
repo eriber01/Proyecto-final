@@ -19,8 +19,6 @@ btnLoginView.addEventListener('click', function(eve){
 
 })
 
-
-
 //variables para mostrar el carrito
 const btnCarritoView =  document.querySelector('#carrito-btn-view')
 const CarritoView = document.querySelector('#carrito')
@@ -29,8 +27,6 @@ btnCarritoView.addEventListener('click', function(eve){
     eve.preventDefault()
     CarritoView.classList.toggle('mostrar-carrito')
 })
-
-
 
 //variables para agregar al carrito
 const addCarritoView =  document.querySelectorAll('.card-food > .agregar-carrito')
