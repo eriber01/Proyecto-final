@@ -1,10 +1,7 @@
-/* const { url } = require("inspector"); */
 
-//varibles para subir la imagen
-const formulario = document.getElementById('form-subir');
 
 // variables y referencias de APIs Firebase
-var db = firebase.storage();
+
 var imgRef = firebase.database().ref().child('imgRef');
 
 //evento que dispara a funcion
@@ -13,17 +10,13 @@ var imgRef = firebase.database().ref().child('imgRef');
 window.onload = function(){
 
     imgRef.on("value", function(snapshot){
-        var imgData = snapshot.val();
-        
-/*         imgData.forEach(function(dataImg){
-            console.log(`datos de imagen ${dataImg.url}` )
-        }) */
+/*         var imgData = snapshot.val();
 
         for(var dataimg in imgData){
             console.log(`url de imagen ${imgData[dataimg].url}, nombre de la imagen ${imgData[dataimg].nombre}` )
         }
-
-        console.log(imgData)
+ */
+        /* console.log(imgData) */
     })
     
     /* var archivo =  */document.getElementById('img-plato').addEventListener('change', function(eve){
