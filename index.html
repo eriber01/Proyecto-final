@@ -78,22 +78,23 @@
         </div>
     </header>
     
-    <div id="ViewDOM">
+<!--     <div id="ViewDOM">
+        <h2>cargado desde vue</h2>
         <div class="card-food" v-for="cardfood in CardFood">
+            
             <div class="agregar-carrito">
-                <p>Precio: <span>{{cardfood.precioPlato}}</span></p>
+                <p>Precio: <span>{{cardfood.precio}}</span></p>
                 <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
                 <br>
                 <span>Agregar al carrito</span>
             </div>
-
-            <img class="comida-img" src="img/platos fuertes/pollo a la teriyaki.jpg" alt="">
+            <img class="comida-img" v-bind:src = "cardfood.ulrImg" alt="">
             <div class="info-card-food">
-                <h3>{{cardfood.nombrePlato}}</h3>
-                <p>{{cardfood.desPlato}}</p>
+                <h3>{{cardfood.nombre}}</h3>
+                <p>{{cardfood.descripcion}}</p>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -104,7 +105,23 @@
             <h2>Plato Fuerte</h2>
 
             <!--Seccion de los platos fuertes-->
-            <div class="plato-fuerte">
+            <div class="plato-fuerte" id="ViewDOM">
+
+                
+                    <div class="card-food" v-for="cardfood in CardFood">
+                        
+                        <div class="agregar-carrito">
+                            <p>Precio: <span>{{cardfood.precio}}</span></p>
+                            <img class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
+                            <br>
+                            <span>Agregar al carrito</span>
+                        </div>
+                        <img class="comida-img" v-bind:src = "cardfood.ulrImg" alt="">
+                        <div class="info-card-food">
+                            <h3>{{cardfood.nombre}}</h3>
+                            <p>{{cardfood.descripcion}}</p>
+                        </div>
+                    </div>
 
                 <div class="card-food">
                     <div class="agregar-carrito">
@@ -120,7 +137,7 @@
                         <p>La cocina japonesa tiene un sinfín de platos más allá del sushi y entre ellos está esta receta de pollo teriyaki.</p>
                     </div>
                 </div>
-    
+
                 <div class="card-food">
                     <div class="agregar-carrito">
                         <p>Precio: <span>1000</span></p>

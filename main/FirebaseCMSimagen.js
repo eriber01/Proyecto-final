@@ -1,4 +1,4 @@
-
+/* 
 
 // variables y referencias de APIs Firebase
 
@@ -10,16 +10,16 @@ var imgRef = firebase.database().ref().child('imgRef');
 window.onload = function(){
 
     imgRef.on("value", function(snapshot){
-/*         var imgData = snapshot.val();
+        var imgData = snapshot.val();
 
         for(var dataimg in imgData){
             console.log(`url de imagen ${imgData[dataimg].url}, nombre de la imagen ${imgData[dataimg].nombre}` )
         }
- */
-        /* console.log(imgData) */
+
+        console.log(imgData)
     })
     
-    /* var archivo =  */document.getElementById('img-plato').addEventListener('change', function(eve){
+    document.getElementById('img-plato').addEventListener('change', function(eve){
         eve.preventDefault()
 
         var archivo = eve.target.files[0];
@@ -60,4 +60,4 @@ function crearRefereciaIMG(nameImg, urlDescarga){
         nombre: nameImg,
         url: urlDescarga
     });
-}
+} */

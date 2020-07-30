@@ -1,6 +1,6 @@
 // variables y referencias de APIs Firebase
 const db = firebase.firestore();
-
+const RealTimeRef = firebase.database().ref().child('imgRef');
 // variables del form para acceder al sistema
 
 const user = document.getElementById('user')
@@ -68,9 +68,9 @@ observador()
 
 //carga los datos de cloud firestore al dom
 
-db.collection("imagenes").get().then((querySnapshot) => {
+/* db.collection("imagenes").get().then((querySnapshot) => {
     querySnapshot.forEach(function(doc){
         console.log(doc.data());
     })
-})
+}) */
 

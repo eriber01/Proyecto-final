@@ -4,13 +4,16 @@ const precioPlato = document.getElementById('precio-plato');
 const desPlato = document.getElementById('descripcion-plato');
 const form = document.getElementById('form-subir')
 
+//referencas a firebase
 var db = firebase.storage();
 var RealTime = firebase.database().ref().child('imgRef')
+
 
 form.addEventListener('submit', function(eve){
     eve.preventDefault()
     //seleciona y sube la imagen a firebase storage
     var archivo = eve.target[2].files[0];
+
     /* console.log(archivo.name) */
     subirImgStorage(archivo)
 })
@@ -29,10 +32,10 @@ function subirImgStorage(archivo){
             console.log('Subida completada de imagen');
 
             var urlDescarga  = uploadTask.h.downloadURLs;
-            console.log(uploadTask.h.downloadURLs)
-
+            /* console.log(uploadTask.h.downloadURLs)
+ */ 
             //sube los datos a la real time databese
-            firebaseRealTimeUpload(archivo.name, urlDescarga);
+            firebaseRealTimeUpload(archivo.name, urlDescarga.toString());
         }
     );
 }
@@ -40,13 +43,13 @@ function subirImgStorage(archivo){
 //funcion sube los datos a Real Time database
 function firebaseRealTimeUpload(nameImg, ulrImg){
 
-    console.log()
     RealTime.push({
         nombrePlato: nombrePlato.value,
         precioPlato: precioPlato.value,
         desPlato: desPlato.value,
-        imgName: nameImg,
-        url: ulrImg
+        url: ulrImg,
+        imgName: nameImg
+        
     })
     .then(function(docRef){
         console.log("Subida exitosa de datos")

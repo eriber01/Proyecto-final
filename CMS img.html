@@ -7,13 +7,28 @@
 </head>
 <body>
 
-    <label for="img-plato">imagen del plato</label>
-    <input type="file" id="img-plato" alt="" accept="image/png, .jpeg, .jpg">
+    
 
+    <form id="form-subir" style="display: flex; flex-direction: column; width: 30%; margin: auto;" action="" autocomplete="off">
+        <label for="NombrePlato">Nombre del plato</label>
+        <input type="text" id="nombre-plato">
+
+        <label for="precio-plato">Precio del Plato</label>
+        <input type="number" name="" id="precio-plato">
+        
+        <label for="img-plato">imagen del plato</label>
+        <input type="file" id="img-plato" alt="" accept="image/png, .jpeg, .jpg">
+
+        <label for="DescripcionPlato">Descripcion Plato</label>
+        <textarea name="" id="descripcion-plato" cols="15" rows="5"></textarea>
+
+        <input type="submit" id="btn-subir" value="Subir">
+    </form>
+    
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
     <script src="main/FirebaseInitializeApp.js"></script>
-    <script src="main/FirebaseCMSimagen.js"></script>
+    <script src="main/FirebaseCMS data.js"></script>
 
 
 </body>
