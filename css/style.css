@@ -443,6 +443,10 @@ header nav .list-menu a{
     transition: all 500ms ease;
 }
 
+.agregar-carrito:hover{
+    opacity: 1;
+}
+
 .no{
     opacity: 1;
 }

@@ -32,25 +32,6 @@ btnCarritoView.addEventListener('click', function(eve){
 const addCarritoView =  document.querySelectorAll('.card-food > .agregar-carrito')
 let carritoView = Array.from(addCarritoView)
 
-
-
-// funcion para mostrar el agregar al carrito de la comida y bebida
-MostrarAgregarCarrito()
-
-function MostrarAgregarCarrito(){
-    carritoView.forEach(function(view, index){
-
-        view.addEventListener('mouseover', function(eve){
-            view.classList.add('no')
-        })
-    
-        view.addEventListener('mouseout', function(eve){
-            view.classList.remove('no')
-        })
-    })
-}
-
-
 //controla el boton de ir hacia arriba
 
     //analiza el scroll para hacer visible el boton
@@ -79,3 +60,6 @@ function Subir_o_Bajar(clase, distacia){
         })
     })
 }
+
+
+//funcion que se encarga de capturar el agregar al carrito

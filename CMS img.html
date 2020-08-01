@@ -9,7 +9,15 @@
 
     
 
-    <form id="form-subir" style="display: flex; flex-direction: column; width: 30%; margin: auto;" action="" autocomplete="off">
+    <form id="form-subir" style="display: flex; flex-direction: column; width: 30%; margin: auto;" action="" autocomplete="off" aria-required="true">
+
+        <label>Elija el tipo de Plato que va a subir</label>
+        <select name="" id="tipoPlato">
+            <option value="platoFuerte">Plato Fuerte</option>
+            <option value="entradas">Entradas</option>
+            <option value="bebidas">Bebidas</option>
+        </select>
+
         <label for="NombrePlato">Nombre del plato</label>
         <input type="text" id="nombre-plato">
 

@@ -1,6 +1,6 @@
 // variables y referencias de APIs Firebase
 const db = firebase.firestore();
-const RealTimeRef = firebase.database().ref().child('imgRef');
+
 // variables del form para acceder al sistema
 
 const user = document.getElementById('user')
