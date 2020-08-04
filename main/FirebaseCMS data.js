@@ -1,16 +1,26 @@
+
 //variables para subir la info de los card
 const nombrePlato = document.getElementById('nombre-plato');
 const precioPlato = document.getElementById('precio-plato');
 const desPlato = document.getElementById('descripcion-plato');
 const tipoPlato = document.getElementById('tipoPlato')
-const form = document.getElementById('form-subir')
+const formUp = document.getElementById('form-subir')
+const formUpdate = document.getElementById('form-update')
+
+
+//controlan la vsta de las opciones del CMS
+const ViewSubir = document.getElementById('btn-crudSubir')
+const ViewActualizar = document.getElementById('btn-crudActualizar')
+//dispara los eventos que muestra las opciones del CMS
+
+
 
 //referencas a firebase
 var db = firebase.storage();
 var RealTime = firebase.database()
 
 
-form.addEventListener('submit', function(eve){
+formUp.addEventListener('submit', function(eve){
     eve.preventDefault()
     //seleciona y sube la imagen a firebase storage
     var archivo = eve.target[3].files[0];
@@ -57,7 +67,7 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
     })
     .then(function(docRef){
         console.log("Subida exitosa de datos")
-        form.reset()
+        formUp.reset()
     })
     .catch(function(error){
         console.log('error al subir', error)

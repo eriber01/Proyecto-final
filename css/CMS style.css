@@ -1,0 +1,126 @@
+body{
+    box-sizing: border-box;
+}
+
+/* diseno de la elecion del crud */
+
+.crudSelect{
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    
+    margin-bottom: 30px;
+}
+
+button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 300ms ease;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.5rem;
+
+    box-shadow: rgb(126, 126, 126) 1px 1px 10px;
+}
+
+button:hover{
+    transform: scale(1.05);
+}
+
+.crudSubir button{
+    background-color: tomato;
+}
+.crudSubir{
+    width: 32%;
+    /* background-color: tomato; */
+}
+
+.crudActualizar button{
+    background-color: teal;
+}
+.crudActualizar{
+    width: 32%;
+   /*  background-color: teal; */
+}
+
+.crudBorrar button{
+    background-color: violet;
+}
+.crudBorrar{
+    width: 32%;
+    /* background-color: violet; */
+}
+
+
+form{
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+    height: 80%;
+    padding: 20px;
+    background-color: #c6efe6;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
+    margin: 60px;
+    margin: auto;
+    text-align: center;
+    transition: all 600ms ease;
+}
+
+option{
+    background-color: #c6efe6;
+}
+input{
+    border: none;
+    border-bottom: solid 1px rgb(119, 119, 119);
+    outline: none;
+    line-height: 30px;
+    margin: 10px;
+    background-color: #c6efe6;
+}
+
+input[type = file]{
+    border: none;
+}
+
+textarea{
+    border: none;
+    resize: none;
+    border-bottom: solid 1px rgb(119, 119, 119);
+    border-top: solid 1px rgb(119, 119, 119);
+    outline: none;
+    background-color: #c6efe6;
+}
+
+::placeholder{
+    color: black;
+}
+
+.enviar{
+    outline: none;
+    border: none;
+    color: white;
+    background: #6d948b;
+    
+    text-align: center;
+    
+    font-size: 16px;
+    /* padding: 10px 60px; */
+    cursor: pointer;
+    border-radius: 3px;
+
+    box-shadow: rgba(0, 0, 0, 0.5) 1px 2px 10px;
+    transition: all 800ms;
+}

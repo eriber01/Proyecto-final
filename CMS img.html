@@ -3,36 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/CMS style.css">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&display=swap" rel="stylesheet">
+    <title>CMS Page Two</title>
 </head>
 <body>
 
-    
+    <br>
+    <br>
+    <br>
 
-    <form id="form-subir" style="display: flex; flex-direction: column; width: 30%; margin: auto;" action="" autocomplete="off" aria-required="true">
+    <div class="crudSelect">
+        <div class="crudSubir">
+            <!-- <h3>Subir</h3> -->
+            <button id="btn-crudSubir" onclick="ver()">Subir</button>
+        </div>
+        <div class="crudActualizar">
+            <!-- <h3>Actualiar</h3> -->
+            <button id="btn-crudActualizar">Actualiar</button>
+        </div>
+        <div class="crudBorrar">
+            <!-- <h3>Borrar</h3> -->
+            <button id="btn-crudBorrar">Borrar</button>
+        </div>
+    </div>
 
-        <label>Elija el tipo de Plato que va a subir</label>
-        <select name="" id="tipoPlato">
-            <option value="platoFuerte">Plato Fuerte</option>
-            <option value="entradas">Entradas</option>
-            <option value="bebidas">Bebidas</option>
-        </select>
+    <div class="form-container">
+        <form id="form-subir" action="" autocomplete="off" aria-required="true">
 
-        <label for="NombrePlato">Nombre del plato</label>
-        <input type="text" id="nombre-plato">
+            <label>Elija el tipo de Plato que va a subir</label>
+            <br>
+            <select name="" id="tipoPlato">
+                <option value="platoFuerte">Plato Fuerte</option>
+                <option value="entradas">Entradas</option>
+                <option value="bebidas">Bebidas</option>
+            </select>
+            <br>
+            <!-- <label for="NombrePlato">Nombre del plato</label> -->
+            <input type="text" placeholder="Nombre del Plato" id="nombre-plato">
 
-        <label for="precio-plato">Precio del Plato</label>
-        <input type="number" name="" id="precio-plato">
+            <!-- <label for="precio-plato">Precio del Plato</label> -->
+            <input type="number" name="" placeholder="Precio del Plato" id="precio-plato">
+            
+            <br>
+            <label class="lb-img" for="img-plato">Selecione la imagen del plato</label>
+            <input type="file" id="img-plato" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+
+            <br>
+            <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
+            <textarea name="" id="descripcion-plato" placeholder="Descripcion del Plato" cols="15" rows="5"></textarea>
+
+            <input type="submit" class="enviar" id="btn-subir" value="Subir">
+        </form>
         
-        <label for="img-plato">imagen del plato</label>
-        <input type="file" id="img-plato" alt="" accept="image/png, .jpeg, .jpg">
+        <!-- Formulario para actualiar -->
 
-        <label for="DescripcionPlato">Descripcion Plato</label>
-        <textarea name="" id="descripcion-plato" cols="15" rows="5"></textarea>
+        <form id="form-update" action="" autocomplete="off" aria-required="true">
 
-        <input type="submit" id="btn-subir" value="Subir">
-    </form>
-    
+            <label>Elija el tipo de Plato al que va a cambiar</label>
+            <br>
+            <select name="" id="tipoPlato">
+                <option value="platoFuerte">Plato Fuerte</option>
+                <option value="entradas">Entradas</option>
+                <option value="bebidas">Bebidas</option>
+            </select>
+            <br>
+            <!-- <label for="NombrePlato">Nombre del plato</label> -->
+            <textarea placeholder="Nombre del Plato" id="nombre-plato"></textarea>
+
+            <!-- <label for="precio-plato">Precio del Plato</label> -->
+            <textarea type="number" name="" placeholder="Precio del Plato" id="precio-plato"></textarea>
+            
+            <br>
+            <label class="lb-img" for="img-plato">Selecione la nueva imagen del plato</label>
+            <input type="file" id="img-plato" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+
+            <br>
+            <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
+            <textarea name="" id="descripcion-plato" placeholder="Descripcion del Plato" cols="15" rows="5"></textarea>
+
+            <input type="submit" class="enviar" id="btn-subir" value="Actualiar">
+        </form>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
     <script src="main/FirebaseInitializeApp.js"></script>
