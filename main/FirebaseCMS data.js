@@ -11,7 +11,18 @@ const formUpdate = document.getElementById('form-update')
 //controlan la vsta de las opciones del CMS
 const ViewSubir = document.getElementById('btn-crudSubir')
 const ViewActualizar = document.getElementById('btn-crudActualizar')
+const ViewBorrar = document.getElementById('btn-crudBorrar')
+
 //dispara los eventos que muestra las opciones del CMS
+ViewSubir.addEventListener('click', function(){
+    formUp.style.display = 'flex'
+    formUpdate.style.display = 'none'
+});
+
+ViewActualizar.addEventListener('click', function(){
+    formUpdate.style.display = 'flex'
+    formUp.style.display = 'none'
+})
 
 
 
