@@ -25,6 +25,7 @@ const VuePlatoFuerte = new Vue({
                     })
                 }    
             });
+          alert(objeto.propiedad)
     }
 });
 
