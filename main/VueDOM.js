@@ -24,7 +24,7 @@ const VuePlatoFuerte = new Vue({
                         urlImg: objeto[propiedad].url
                     })
                 }   
- alert("hola" + objeto.propiedad.key)
+ alert("hola" + objeto.propiedad.nombre)
             });
           
     }
