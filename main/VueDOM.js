@@ -23,10 +23,8 @@ const VuePlatoFuerte = new Vue({
                         descripcion: objeto[propiedad].desPlato,
                         urlImg: objeto[propiedad].url
                     })
-                }   
- alert("hola" + objeto.propiedad.nombre)
+                }
             });
-          
     }
 });
 
