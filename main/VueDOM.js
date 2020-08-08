@@ -25,7 +25,7 @@ const VuePlatoFuerte = new Vue({
                     })
                 }    
             });
-          alert("hola")
+          alert("hola" + objeto.key)
     }
 });
 
