@@ -62,11 +62,9 @@ function Subir_o_Bajar(clase, distacia){
 }
 
 
-//funcion que se encarga de capturar el agregar al carrito
-const btnAgregarCarrito = document.getElementById('btn-carrito')
+const btn_AgregarCarrito = document.querySelector('#btn-agregarCarrito')
 
-/* btnAgregarCarrito.addEventListener('click', function(eve){
-
-
-    console.log('agregado')
-}) */
+btn_AgregarCarrito.addEventListener('click', function(eve){
+    
+    console.log('funciona agregar carrito')
+})
