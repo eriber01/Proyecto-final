@@ -1,11 +1,10 @@
-
-//variables para subir la info de los card
+//variables para la info de los card
 const nombrePlato = document.getElementById('nombre-plato');
 const precioPlato = document.getElementById('precio-plato');
 const desPlato = document.getElementById('descripcion-plato');
 const tipoPlato = document.getElementById('tipoPlato')
 const formUp = document.getElementById('form-subir')
-const formUpdate = document.getElementById('form-update')
+const UpdateView = document.getElementById('update-view')
 
 
 //controlan la vsta de las opciones del CMS
@@ -14,14 +13,16 @@ const ViewActualizar = document.getElementById('btn-crudActualizar')
 const ViewBorrar = document.getElementById('btn-crudBorrar')
 
 //dispara los eventos que muestra las opciones del CMS
-ViewSubir.addEventListener('click', function(){
-    formUp.style.display = 'flex'
-    formUpdate.style.display = 'none'
+ViewSubir.addEventListener('click', function(eve){
+    eve.preventDefault()
+    formUp.classList.add('formDisplay')
+    UpdateView.classList.remove('formDisplay')
 });
 
-ViewActualizar.addEventListener('click', function(){
-    formUpdate.style.display = 'flex'
-    formUp.style.display = 'none'
+ViewActualizar.addEventListener('click', function(eve){
+    eve.preventDefault()
+    UpdateView.classList.add('formDisplay')
+    formUp.classList.remove('formDisplay')
 })
 
 
@@ -30,7 +31,7 @@ ViewActualizar.addEventListener('click', function(){
 var db = firebase.storage();
 var RealTime = firebase.database()
 
-
+//evento que dispara la subida de los datos
 formUp.addEventListener('submit', function(eve){
     eve.preventDefault()
     //seleciona y sube la imagen a firebase storage
@@ -72,15 +73,102 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
         nombrePlato: nombrePlato.value,
         precioPlato: precioPlato.value,
         desPlato: desPlato.value,
+        tipoPlato: tipoPlato.value,
         url: ulrImg,
         imgName: nameImg
         
     })
     .then(function(docRef){
         console.log("Subida exitosa de datos")
+        console.log(docRef)
         formUp.reset()
     })
     .catch(function(error){
         console.log('error al subir', error)
     });
+}
+
+
+
+//crea y llena los form del modulo actualizar
+window.onload = function(){
+    var Real = RealTime.ref().child('RestauranteData/platoFuerte');
+    
+    Real.on("value", function(snapshot){
+    var RealData = snapshot.val()
+
+    console.log('funciona');
+        for(var data in RealData){
+            /* console.log(RealData[data])
+
+            console.log(parseInt(RealData[data].precioPlato));
+            console.log(RealData.key);
+            console.log(snapshot.val()) */
+
+            const formUpdateLoad = document.createElement('form')
+            formUpdateLoad.autocomplete = 'off';
+            formUpdateLoad.setAttribute('aria-required', 'true')
+            formUpdateLoad.innerHTML = `
+        <label>Elija el tipo de Plato al que va a cambiar</label>
+        <br>
+        <select name="" id="tipoPlatoUpdate">
+            <option value="platoFuerte">Plato Fuerte</option>
+            <option value="entradas">Entradas</option>
+            <option value="bebidas">Bebidas</option>
+        </select>
+        <br>
+        <!-- <label for="NombrePlato">Nombre del plato</label> -->
+        <textarea id="nombre-platoUpdate">\`${RealData[data].nombrePlato}\`</textarea>
+        
+        <!-- <label for="precio-plato">Precio del Plato</label> -->
+        <input type="number" name="" placeholder="Precio del Plato" id="precio-platoUpdate">
+        
+        <br>
+        <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
+        <input type="file" id="img-platoUpdate" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+        
+        <br>
+        <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
+        <textarea name="" id="descripcion-platoUpdate" cols="15" rows="5">\`${RealData[data].desPlato}\`</textarea>
+        
+        <input type="submit" onclick="UpdateCard()" class="enviar" id="btn-Update" value="Actualiar">
+        `
+        
+        document.querySelector('#update-view').appendChild(formUpdateLoad)
+        };//fin de laiteracion que crea y llena los form
+        
+    });
+    
+
+
+}
+
+
+
+//funcion de la actualizacion de los datos
+
+function UpdateCard() {
+    console.log('funciona')
+    alert('funciona')
+
+    var RealUpdate = RealTime.ref().child('RestauranteData/platoFuerte');
+    
+    RealUpdate.update({
+        nombrePlato: nombrePlato.value,
+        precioPlato: precioPlato.value,
+        desPlato: desPlato.value,
+        tipoPlato: tipoPlato.value
+        /*  url: ulrImg,
+        imgName: nameImg */
+        
+    })
+    .then(function(docRef){
+        console.log("actualizacion exitosa de datos")
+        alert('funciona')
+        console.log(docRef)
+       
+    })
+    .catch(function(error){
+        console.log('error al subir', error)
+    })
 }

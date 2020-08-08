@@ -17,7 +17,7 @@
     <div class="crudSelect">
         <div class="crudSubir">
             <!-- <h3>Subir</h3> -->
-            <button id="btn-crudSubir" onclick="ver()">Subir</button>
+            <button id="btn-crudSubir">Subir</button>
         </div>
         <div class="crudActualizar">
             <!-- <h3>Actualiar</h3> -->
@@ -30,7 +30,7 @@
     </div>
 
     <div class="form-container">
-        <form id="form-subir" action="" autocomplete="off" aria-required="true">
+        <form style="display: none;" id="form-subir" action="" autocomplete="off" aria-required="true">
 
             <label>Elija el tipo de Plato que va a subir</label>
             <br>
@@ -59,32 +59,33 @@
         
         <!-- Formulario para actualiar -->
 
-        <form id="form-update" action="" autocomplete="off" aria-required="true">
+<!--         <form id="form-update" action="" autocomplete="off" aria-required="true">
 
             <label>Elija el tipo de Plato al que va a cambiar</label>
             <br>
-            <select name="" id="tipoPlato">
+            <select name="" id="tipoPlatoUpdate">
                 <option value="platoFuerte">Plato Fuerte</option>
                 <option value="entradas">Entradas</option>
                 <option value="bebidas">Bebidas</option>
             </select>
             <br>
-            <!-- <label for="NombrePlato">Nombre del plato</label> -->
-            <textarea placeholder="Nombre del Plato" id="nombre-plato"></textarea>
+            
+            <textarea placeholder="Nombre del Plato" id="nombre-platoUpdate"></textarea>
 
-            <!-- <label for="precio-plato">Precio del Plato</label> -->
-            <textarea type="number" name="" placeholder="Precio del Plato" id="precio-plato"></textarea>
+
+            <input type="number" name="" placeholder="Precio del Plato" id="precio-platoUpdate">
             
             <br>
-            <label class="lb-img" for="img-plato">Selecione la nueva imagen del plato</label>
-            <input type="file" id="img-plato" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+            <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
+            <input type="file" id="img-platoUpdate" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
 
             <br>
-            <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
-            <textarea name="" id="descripcion-plato" placeholder="Descripcion del Plato" cols="15" rows="5"></textarea>
+            <textarea name="" id="descripcion-platoUpdate" placeholder="Descripcion del Plato" cols="15" rows="5"></textarea>
 
-            <input type="submit" class="enviar" id="btn-subir" value="Actualiar">
-        </form>
+            <input type="submit" class="enviar" id="btn-Update" value="Actualiar">
+        </form> -->
+
+        <div style="display: none;" class="flexible" id="update-view"></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
