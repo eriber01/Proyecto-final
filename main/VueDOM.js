@@ -21,8 +21,11 @@ const VuePlatoFuerte = new Vue({
                         nombre: objeto[propiedad].nombrePlato,
                         precio: objeto[propiedad].precioPlato,
                         descripcion: objeto[propiedad].desPlato,
-                        urlImg: objeto[propiedad].url
+                        urlImg: objeto[propiedad].url,
+                        dataKey: objeto[propiedad].keyPlato
                     })
+                    
+                    console.log(typeof(objeto[propiedad].keyPlato))
                 }
             });
     }

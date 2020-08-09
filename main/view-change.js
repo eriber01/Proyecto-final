@@ -60,11 +60,3 @@ function Subir_o_Bajar(clase, distacia){
         })
     })
 }
-
-
-const btn_AgregarCarrito = document.querySelector('#btn-agregarCarrito')
-
-btn_AgregarCarrito.addEventListener('click', function(eve){
-    
-    console.log('funciona agregar carrito')
-})

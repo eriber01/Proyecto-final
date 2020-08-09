@@ -68,18 +68,20 @@ function subirImgStorage(archivo){
 function firebaseRealTimeUpload(nameImg, ulrImg){
 
     var refRealTime = RealTime.ref().child(`RestauranteData/${tipoPlato.value}`)
-
+    console.log(refRealTime.push().key);
+    const key = refRealTime.push().key;
     refRealTime.push({
         nombrePlato: nombrePlato.value,
         precioPlato: precioPlato.value,
         desPlato: desPlato.value,
         tipoPlato: tipoPlato.value,
         url: ulrImg,
-        imgName: nameImg
+        imgName: nameImg,
+        keyPlato: key
         
     })
     .then(function(docRef){
-        console.log("Subida exitosa de datos")
+        console.log("Subida exitosa de datos " + key)
         console.log(docRef)
         formUp.reset()
     })
@@ -104,7 +106,7 @@ window.onload = function(){
             console.log(parseInt(RealData[data].precioPlato));
             console.log(RealData.key);
             console.log(snapshot.val()) */
-
+            
             const formUpdateLoad = document.createElement('form')
             formUpdateLoad.autocomplete = 'off';
             formUpdateLoad.setAttribute('aria-required', 'true')
@@ -166,7 +168,6 @@ function UpdateCard() {
         console.log("actualizacion exitosa de datos")
         alert('funciona')
         console.log(docRef)
-       
     })
     .catch(function(error){
         console.log('error al subir', error)
