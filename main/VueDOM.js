@@ -25,7 +25,7 @@ const VuePlatoFuerte = new Vue({
                         dataKey: objeto[propiedad].keyPlato
                     })
                     
-                    console.log(typeof(objeto[propiedad].keyPlato))
+                    /* console.log(objeto[propiedad].keyPlato) */
                 }
             });
     }
@@ -82,3 +82,86 @@ const VueBebidas = new Vue({
         })
     }
 })
+
+
+
+
+
+
+
+
+/* const carrito = document.getElementById('no').addEventListener('click', function(eve){
+    eve.preventDefault()
+    console.log('hola')
+
+    let data
+    RefPLatoFuerte.on('value', function(snapshot){
+    data = snapshot.val()
+
+    for(dat in data){
+        id: data[dat].keyPlato
+        console.log(data[dat].keyPlato)
+    }
+    })
+}) */
+
+
+// logica, eventos y funciones de agregar a al carrito
+
+//variables
+const DomCarrito = document.querySelector('#lista-carrito tbody')
+document.addEventListener('DOMContentLoaded',function(eve){
+    console.log('hola mundo');
+
+    //esta funcion se cargar de esperar a que cargue todo en el DOM antes crear los eventos
+    setTimeout(function(){
+
+ 
+
+        let data
+        RefPLatoFuerte.on('value', function(snapshot){
+        data = snapshot.val()
+    
+            for(dat in data){
+                id: data[dat].keyPlato
+                /* console.log(data[dat].keyPlato) */
+
+                const brn_Carrito = document.getElementById(data[dat].keyPlato)
+            /*  console.log(nose) */
+        
+                brn_Carrito.addEventListener('click', function(eve){
+                    eve.preventDefault()
+                    
+                    const carrito =  eve.target.parentElement.parentElement;
+                    console.log(carrito)
+                    const dataCarrito = {
+                        nombre: carrito.querySelector('h3').textContent,
+                        precio: carrito.querySelector('span').textContent
+                    }
+
+                    console.log(dataCarrito)
+                    console.log(`click en agregar carrito ${data[dat].nombrePlato}`)
+
+
+                    // inserta los datos del curso al DOM
+                    insertarCarrito(dataCarrito)
+                    function insertarCarrito(dataCarrito){
+
+                        const row = document.createElement('tr')
+
+                        //agrega el templace literal que ira al DOM
+                        row.innerHTML = `
+                            <td>${dataCarrito.nombre}</td>
+                            <td>${dataCarrito.precio}</td>
+                        `;
+
+                        //agregar los datos al dom
+                        DomCarrito.appendChild(row)
+                        console.log('se agrego el curso')
+                    }
+                })
+            }
+        })
+
+    }, 3000)
+} )
