@@ -69,8 +69,8 @@ header nav .list-menu a{
     header .carrito{
         justify-content: center;
         flex-direction: column;
-        width: 80%;
-        height: 10rem;
+        width: 95%;
+        min-height: 10rem;
         right: 0;
         top: 120%;
         z-index: 3;
@@ -240,8 +240,8 @@ header nav .list-menu a{
 .carrito{
     justify-content: center;
     flex-direction: column;
-    width: 30%;
-    height: 10rem;
+    width: 50%;
+    min-height: 10rem;
     right: 0;
     top: 120%;
     z-index: 3;
