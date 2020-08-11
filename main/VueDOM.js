@@ -110,15 +110,16 @@ const VueBebidas = new Vue({
 
 //variables
 const DomCarrito = document.querySelector('#lista-carrito tbody')
+const DomTotal = document.querySelector('#total tbody')
+
 document.addEventListener('DOMContentLoaded',function(eve){
     console.log('hola mundo');
 
     //esta funcion se cargar de esperar a que cargue todo en el DOM antes crear los eventos
     setTimeout(function(){
 
- 
+        let data;
 
-        let data
         RefPLatoFuerte.on('value', function(snapshot){
         data = snapshot.val()
     
@@ -147,16 +148,25 @@ document.addEventListener('DOMContentLoaded',function(eve){
                     insertarCarrito(dataCarrito)
                     function insertarCarrito(dataCarrito){
 
-                        const row = document.createElement('tr')
-
+                        const rowCarrito = document.createElement('tr')
+                        const rowTotal = document.createElement('tr')
+                        let Total;
+                        let DomTotal;
                         //agrega el templace literal que ira al DOM
-                        row.innerHTML = `
+                        rowCarrito.innerHTML = `
                             <td>${dataCarrito.nombre}</td>
                             <td>${dataCarrito.precio}</td>
                         `;
 
+                        console.log(DomTotal)
+                        rowTotal.innerHTML = `
+                                <td>TOTAL</td>
+                                <td>${Total}</td>
+                        `
                         //agregar los datos al dom
-                        DomCarrito.appendChild(row)
+                        DomCarrito.appendChild(rowCarrito)
+
+                        /* DomTotal.appendChild(rowTotal) */
                         console.log('se agrego el curso')
                     }
                 })
