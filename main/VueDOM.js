@@ -119,11 +119,6 @@ document.addEventListener('DOMContentLoaded',function(eve){
                         precio: carrito.querySelector('span').textContent
                     }
 
-                    //intera los dato para metener al carrito
-
-                    
-                    console.log(`click en agregar carrito ${data[dat].nombrePlato}`)
-
                     // inserta los datos del plato al carrito
                     insertarCarrito(dataCarrito)
                     function insertarCarrito(dataCarrito){
@@ -138,11 +133,6 @@ document.addEventListener('DOMContentLoaded',function(eve){
 
                         //agregar los datos al dom
                         DomCarrito.appendChild(rowCarrito)
-
-                        let numero = parseInt(dataCarrito.precio);
-                        let array = []
-                        array.push(numero + array.push(numero))
-                        console.log(array)
                         console.log('se agrego el curso')
                     }
                 })
