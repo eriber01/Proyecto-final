@@ -83,29 +83,6 @@ const VueBebidas = new Vue({
     }
 })
 
-
-
-
-
-
-
-
-/* const carrito = document.getElementById('no').addEventListener('click', function(eve){
-    eve.preventDefault()
-    console.log('hola')
-
-    let data
-    RefPLatoFuerte.on('value', function(snapshot){
-    data = snapshot.val()
-
-    for(dat in data){
-        id: data[dat].keyPlato
-        console.log(data[dat].keyPlato)
-    }
-    })
-}) */
-
-
 // logica, eventos y funciones de agregar a al carrito
 
 //variables
