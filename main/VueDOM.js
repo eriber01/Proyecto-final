@@ -125,48 +125,47 @@ document.addEventListener('DOMContentLoaded',function(eve){
     
             for(dat in data){
                 id: data[dat].keyPlato
-                /* console.log(data[dat].keyPlato) */
+                
 
-                const brn_Carrito = document.getElementById(data[dat].keyPlato)
-            /*  console.log(nose) */
+                const brn_Carrito = document.querySelector(`#${data[dat].keyPlato}`)
+            
         
                 brn_Carrito.addEventListener('click', function(eve){
                     eve.preventDefault()
+
+
                     
                     const carrito =  eve.target.parentElement.parentElement;
-                    console.log(carrito)
+                    //console.log(carrito)
                     const dataCarrito = {
                         nombre: carrito.querySelector('h3').textContent,
                         precio: carrito.querySelector('span').textContent
                     }
 
-                    console.log(dataCarrito)
+                    //intera los dato para metener al carrito
+
+                    
                     console.log(`click en agregar carrito ${data[dat].nombrePlato}`)
 
-
-                    // inserta los datos del curso al DOM
+                    // inserta los datos del plato al carrito
                     insertarCarrito(dataCarrito)
                     function insertarCarrito(dataCarrito){
 
                         const rowCarrito = document.createElement('tr')
-                        const rowTotal = document.createElement('tr')
-                        let Total;
-                        let DomTotal;
+
                         //agrega el templace literal que ira al DOM
                         rowCarrito.innerHTML = `
                             <td>${dataCarrito.nombre}</td>
                             <td>${dataCarrito.precio}</td>
                         `;
 
-                        console.log(DomTotal)
-                        rowTotal.innerHTML = `
-                                <td>TOTAL</td>
-                                <td>${Total}</td>
-                        `
                         //agregar los datos al dom
                         DomCarrito.appendChild(rowCarrito)
 
-                        /* DomTotal.appendChild(rowTotal) */
+                        let numero = parseInt(dataCarrito.precio);
+                        let array = []
+                        array.push(numero + array.push(numero))
+                        console.log(array)
                         console.log('se agrego el curso')
                     }
                 })
