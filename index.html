@@ -48,17 +48,25 @@
                                     </thead>
                                     <tbody>
                                     </tbody>
-                                    <div id="total">
-                                        <thead>
+                                    
+                                        <thead id="total">
+                                            
                                             <tr>
-                                                <th>TOTAL</th>
-                                                <th>{{}}</th>
+                                                <th>Cuenta</th>
+                                                <th>{{VerCuenta}}</th>
                                             </tr>
                                         </thead>
-                                    </div>
+                                    
                                 </table>
                                 
-                                <button class="ordenar-btn">Ordenar</button>
+                                <div class="orden-desicion">
+                                    <br>
+                                    <button id="cuenta" class="ordenar-btn">Ver Total de la Cuenta</button>
+                                    <br>
+                                    <br>
+                                    <button id="ordenar" class="ordenar-btn">Ordenar</button>
+                                    <button style="background-color: red; color: white; width: 80px;" id="cancelar" class="ordenar-btn">Cancelar</button>
+                                </div>
                             </div>
                         </li>
                     </ul>

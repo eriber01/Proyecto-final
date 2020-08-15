@@ -103,22 +103,20 @@ document.addEventListener('DOMContentLoaded',function(eve){
             for(dat in data){
                 id: data[dat].keyPlato
                 
-
                 const brn_Carrito = document.querySelector(`#${data[dat].keyPlato}`)
-            
-        
+
                 brn_Carrito.addEventListener('click', function(eve){
                     eve.preventDefault()
 
-
-                    
                     const carrito =  eve.target.parentElement.parentElement;
                     //console.log(carrito)
                     const dataCarrito = {
                         nombre: carrito.querySelector('h3').textContent,
-                        precio: carrito.querySelector('span').textContent
+                        precio: carrito.querySelector('span').textContent,
+                        id: carrito.querySelector('img').getAttribute('id')
                     }
 
+                    console.log(dataCarrito)
                     // inserta los datos del plato al carrito
                     insertarCarrito(dataCarrito)
                     function insertarCarrito(dataCarrito){
@@ -129,15 +127,113 @@ document.addEventListener('DOMContentLoaded',function(eve){
                         rowCarrito.innerHTML = `
                             <td>${dataCarrito.nombre}</td>
                             <td>${dataCarrito.precio}</td>
+                            <td>
+                                <a href="#" class="borrar">X</a>
+                            </td>
                         `;
 
                         //agregar los datos al dom
                         DomCarrito.appendChild(rowCarrito)
                         console.log('se agrego el curso')
+                        console.log(dataCarrito)
+
+                        guardarLocalStorage(dataCarrito)
                     }
                 })
             }
         })
-
     }, 3000)
 } )
+
+
+function guardarLocalStorage(dataCarrito){
+    let dataCarritos;
+    
+    dataCarritos = obtenerLocalStorage();
+    dataCarritos.push(dataCarrito)
+
+    localStorage.setItem('Orden', JSON.stringify(dataCarritos))
+    console.log(dataCarritos)
+}
+
+
+ //Suma el precio de los valores del carrito
+
+const Cuenta = document.getElementById('cuenta').addEventListener('click', CarritoCuenta)
+
+function CarritoCuenta(){
+
+    console.log('cuenta funcona')
+    let CarritoData;
+    let total = 0;
+
+    CarritoData = obtenerLocalStorage();
+
+    for(let i=0; i<CarritoData.length; i++){
+        let precioLS = Number(CarritoData[i].precio)
+        total = total + precioLS;
+    }
+
+    console.log(total)
+
+    const VueCuenta = new Vue({
+        el: "#total",
+        data: {
+            VerCuenta: `${total}`
+        }
+    })
+}
+
+//obtione la cuenta que es guardada en el localstorage
+function obtenerLocalStorage(){
+    let dataCarritos;
+    
+    if(localStorage.getItem("Orden") === null){
+        dataCarrito = []
+    }else{
+        dataCarrito = JSON.parse(localStorage.getItem('Orden'))
+    }
+
+    return dataCarrito;
+}
+
+//Eliminar un plato del carrito
+const retirarPlato = document.getElementById('carrito').addEventListener('click', function(eve){
+    eve.preventDefault()
+    
+    let elimiarPlato, platoID;
+
+    if(eve.target.classList.contains('borrar')){
+        eve.target.parentElement.parentElement.remove()
+        elimiarPlato = eve.target.parentElement.parentElement
+        /* platoID = elimiarPlato.querySelector('a'). */
+    }
+})
+
+//elimina la cuenta
+
+const cancelar = document.getElementById('cancelar').addEventListener('click', function(eve){
+    eve.preventDefault()
+    //confirmacion de la eliminacion de la cuenta
+
+    swal({
+        title: "Esta segudo que desea Proceguir?",
+        text: "Una vez cancelada debera elegir los plato otra vez!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            swal("Listo su plato ah sido eliminado!", {
+            icon: "success",
+        });
+        setTimeout(function(){
+            window.location.reload()
+            localStorage.clear()
+        }, 2000)
+        } else {
+            swal("Los platos siguen como los dejo!");
+        }
+    });
+})

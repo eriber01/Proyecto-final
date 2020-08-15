@@ -28,10 +28,7 @@ btnCarritoView.addEventListener('click', function(eve){
     CarritoView.classList.toggle('mostrar-carrito')
 })
 
-//variables para agregar al carrito
-/* const addCarritoView =  document.querySelectorAll('.card-food > .agregar-carrito')
-let carritoView = Array.from(addCarritoView)
- */
+
 //controla el boton de ir hacia arriba
 
     //analiza el scroll para hacer visible el boton

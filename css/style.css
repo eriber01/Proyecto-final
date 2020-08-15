@@ -237,6 +237,10 @@ header nav .list-menu a{
     display: flex !important;
 }
 
+.none{
+    display: none;
+}
+
 .carrito{
     justify-content: center;
     flex-direction: column;
@@ -271,6 +275,22 @@ header nav .list-menu a{
     border-radius: 5px;
 }
 
+.borrar{
+    color: white;
+    list-style: none;
+    border: none;
+    text-decoration: none;
+    background-color: red;
+    border-radius: 100%;
+    padding: 4px;
+    transition: all 400ms ease;
+}
+
+.borrar:hover{
+    background-color: white;
+    color: red;
+    transform: scale(1.0009);
+}
 .log-carrito li{
     list-style: none;
 }
