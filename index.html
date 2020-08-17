@@ -82,8 +82,6 @@
 
     <div class="menu-food">
 
-        <!--esto agrega una linea-->
-             <hr/>
             <h1>Menu</h1>
             
             <h2>Plato Fuerte</h2>
@@ -131,8 +129,6 @@
 
             <!-- Seccion de las entradas -->
 
-            <!--esto agrega una linea-->
-            <hr/>
             <h2>Principales Entradas</h2>
             <div class="entradas" id="VueEntradas">
 
@@ -152,7 +148,7 @@
             </div>
 
             <!--Seccion de bebidas-->
-            <hr/>
+
             <h2>Catalogo de Bebidas</h2>
             <div class="entradas" id="VueBebidas">
 
@@ -173,14 +169,24 @@
             </div>
     </div>
 
-    <!--sseccion de los graficos-->
-         <hr/>
-         <hr/>
-
-
     <div class="up no-display-up" id="scroll-up">
         <img src="img/ico/button-up.png" style="width: 3rem;" alt="">
     </div>
+
+<hr/>
+    <!--grafica-->
+        <div> <!--elemento canvas-->
+
+            <h3>Favoritos</h3>
+            <canvas id="myChart" width="50%" height="50%"></canvas>
+           
+        </div>
+        <br>
+        <br>
+        <br>
+        <hr/>
+        
+
     <footer>
         <div class="contactos">
             <Span>Telefonos: 809-123-1234</Span>
@@ -201,6 +207,62 @@
 
     </footer>
 
+        <!--llamar libreria chart.js-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+
+            <script>
+                //pintar graficos
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['Pollo relleno', 
+                        'Carne de res', 
+                        'Sopa de pollo', 
+                        'Canapes navideña', 
+                        'Vino rosado',
+                         'Rosy'],
+
+                        datasets: [{
+                            label:['Plato de entrada','Plato fuerte', 'Bebidas'],
+                            data: [12, 19, 3, 5, 2, 3],
+                            
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 2)',
+                                'rgba(54, 162, 235, 2)',
+                                'rgba(255, 206, 86, 2)',
+                                'rgba(75, 192, 192, 2)',
+                                'rgba(153, 102, 255, 2)',
+                                'rgba(255, 159, 64, 2)'
+                                
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                                
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                })
+                    </script>
+    
+    
     <!-- llamada de live chat -->
     <section>
         <script type="text/javascript">function add_chatinline(){var hccid=45928616;var nt=document.createElement("script");nt.async=true;nt.src="https://mylivechat.com/chatinline.aspx?hccid="+hccid;var ct=document.getElementsByTagName("script")[0];ct.parentNode.insertBefore(nt,ct);}
