@@ -82,6 +82,9 @@
 
     <div class="menu-food">
 
+        <!--esto agrega una linea-->
+            <hr/>
+
             <h1>Menu</h1>
             
             <h2>Plato Fuerte</h2>
@@ -182,8 +185,7 @@
            
         </div>
         <br>
-        <br>
-        <br>
+       
         <hr/>
         
 
@@ -215,7 +217,7 @@
 
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var myChart = new Chart(ctx, {
-                    type: 'pie',
+                    type: 'doughnut',
                     data: {
                         labels: ['Pollo relleno', 
                         'Carne de res', 

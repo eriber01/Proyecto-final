@@ -90,8 +90,6 @@ const DomCarrito = document.querySelector('#lista-carrito tbody')
 const DomTotal = document.querySelector('#total tbody')
 
 document.addEventListener('DOMContentLoaded',function(eve){
-    console.log('hola mundo');
-
     //esta funcion se cargar de esperar a que cargue todo en el DOM antes crear los eventos
     setTimeout(function(){
 
@@ -103,8 +101,10 @@ document.addEventListener('DOMContentLoaded',function(eve){
             for(dat in data){
                 id: data[dat].keyPlato
                 
+                //hace referencia al boton de agregar al carrito
                 const brn_Carrito = document.querySelector(`#${data[dat].keyPlato}`)
 
+                //evento que se ejecuta al hacer click en el boton agregar carrito
                 brn_Carrito.addEventListener('click', function(eve){
                     eve.preventDefault()
 
@@ -127,24 +127,47 @@ document.addEventListener('DOMContentLoaded',function(eve){
                         rowCarrito.innerHTML = `
                             <td>${dataCarrito.nombre}</td>
                             <td>${dataCarrito.precio}</td>
-                            <td>
-                                <a href="#" class="borrar">X</a>
-                            </td>
-                        `;
-
+                            <td><a href="#" id=\"${dataCarrito.id}\" class="borrar">X<a></td>
+                        `;  
+                        
+                        console.log(rowCarrito)
                         //agregar los datos al dom
+                        
                         DomCarrito.appendChild(rowCarrito)
+                        
                         console.log('se agrego el curso')
-                        console.log(dataCarrito)
-
+                        console.log(DomCarrito.parentNode)
+                        
                         guardarLocalStorage(dataCarrito)
                     }
                 })
             }
         })
     }, 3000)
+
+    //carga los datos del localStorage al DOM
+    cargarDatosDOM()
 } )
 
+
+//funcion cargar datos del localStorage al DOM
+function cargarDatosDOM(){
+    let platoLS;
+    platoLS = obtenerLocalStorage()
+
+    platoLS.forEach(function(platos){
+        const rowCarrito = document.createElement('tr');
+
+        //agregar la fila al carrito
+
+        rowCarrito.innerHTML = `
+            <td>${platos.nombre}</td>
+            <td>${platos.precio}</td>
+            <td><a href="#" id=\"${platos.id}\" class="borrar">X<a></td>
+        `
+        DomCarrito.appendChild(rowCarrito)
+    });
+}
 
 function guardarLocalStorage(dataCarrito){
     let dataCarritos;
@@ -188,13 +211,13 @@ function CarritoCuenta(){
 function obtenerLocalStorage(){
     let dataCarritos;
     
-    if(localStorage.getItem("Orden") === null){
-        dataCarrito = []
+    if(localStorage.getItem('Orden') === null){
+        dataCarritos = []
     }else{
-        dataCarrito = JSON.parse(localStorage.getItem('Orden'))
+        dataCarritos = JSON.parse(localStorage.getItem('Orden'))
     }
 
-    return dataCarrito;
+    return dataCarritos;
 }
 
 //Eliminar un plato del carrito
@@ -204,11 +227,79 @@ const retirarPlato = document.getElementById('carrito').addEventListener('click'
     let elimiarPlato, platoID;
 
     if(eve.target.classList.contains('borrar')){
-        eve.target.parentElement.parentElement.remove()
+        
         elimiarPlato = eve.target.parentElement.parentElement
-        /* platoID = elimiarPlato.querySelector('a'). */
+        platoID = elimiarPlato.querySelector('a').getAttribute('id')
+        eve.target.parentElement.parentElement.remove()
+    }
+
+    console.log(platoID);
+    elminarPlatoLocalStorage(platoID)
+})
+
+//elimina el plato del localStorage
+
+function elminarPlatoLocalStorage(platoID){
+    let platoLS;
+
+    //carga toda la info del localstorage
+
+    platoLS = obtenerLocalStorage()
+
+    //itera el array para eliminar el plato espesifico
+
+    platoLS.forEach(function(plato, index){
+        if(plato.id === platoID){
+            platoLS.splice(index, 1)
+        }
+    });
+
+    //retorna el array localstorage ya editado
+
+    localStorage.setItem('Orden', JSON.stringify(platoLS))
+
+    console.log(platoLS)
+}
+
+
+//confirma la orden
+const confirmaOrden = document.getElementById('ordenar').addEventListener('click', function(eve){
+    eve.preventDefault()
+
+    if(localStorage.getItem("Orden") === null || localStorage.getItem('Orden').length <= 2){
+        swal({
+            title: "Que estas Haciendo!",
+            text: "No puedes ordenar sin haber elegido ningun plato!",
+            icon: "warning",
+            button: "Continuar!",
+        });
+    }else{
+        console.log('la orden esta en camino')
+        //confirmacion de la orden
+        swal({
+            title: "Esta segudo que desea Proceguir?",
+            text: "Una vez Confirmada no podra cancelar la orden!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+            if (willDelete) {
+                swal("Listo su orden esta en camino!", {
+                icon: "success",
+            });
+            setTimeout(function(){
+                
+                
+            }, 2000)
+            } else {
+                swal("Los platos siguen como los dejo!");
+            }
+        });
     }
 })
+
+
 
 //elimina la cuenta
 
@@ -230,7 +321,7 @@ const cancelar = document.getElementById('cancelar').addEventListener('click', f
         });
         setTimeout(function(){
             window.location.reload()
-            localStorage.clear()
+            localStorage.removeItem('Orden')
         }, 2000)
         } else {
             swal("Los platos siguen como los dejo!");
