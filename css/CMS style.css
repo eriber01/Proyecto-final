@@ -152,7 +152,8 @@ textarea{
     text-decoration: none;
     background-color: red;
     border-radius: 100%;
-    padding: 4px;
+    padding: 6px;
+    font-size: 1.2rem;
     transition: all 400ms ease;
 }
 
@@ -173,8 +174,10 @@ textarea{
 
 
 .flexible-borrar form{
-    
+    margin: auto;
     margin-top: 30px;
+
+    width: 20%;
 }
 
 .flexible-borrar form a{

@@ -108,7 +108,7 @@ window.onload = function(){
     Real.on("value", function(snapshot){
     var RealData = snapshot.val()
 
-    console.log('funciona');
+    console.log('funciona cargar');
         for(var data in RealData){
             /* console.log(RealData[data])
 
@@ -158,7 +158,7 @@ window.onload = function(){
 //funcion de la actualizacion de los datos
 
 function UpdateCard() {
-    console.log('funciona')
+    console.log('funciona acualizar')
     alert('funciona')
 
     var RealUpdate = RealTime.ref().child('RestauranteData/platoFuerte');
@@ -187,21 +187,45 @@ function UpdateCard() {
 
 function BorrarPlato(RealData){
 
-    console.log(RealData)
+    console.log('funciona borrar');
 
+    let BDborrarRef;
     //itera los datos para sacarlos de firebase
     for(var dat in RealData){
                 //creando los datos que van a ser agregados al dom
-        const formSubir = document.createElement('form')
-        formSubir.autocomplete = 'off'
-        formSubir.setAttribute('aria-required', 'true')
-        formSubir.innerHTML = `
+        const formBorrar = document.createElement('form')
+        formBorrar.autocomplete = 'off'
+        formBorrar.setAttribute('aria-required', 'true')
+        formBorrar.innerHTML = `
             <p>${RealData[dat].nombrePlato}</p>
-            <a id=${RealData[dat].keyPlato} class="borrar">X<a>
+            
+            <a id=${RealData[dat].keyPlato} class="borrar">Eliminar<a>
         `
-        console.log(RealData[dat])
-        document.querySelector('#borrar-view').appendChild(formSubir)
+
+        document.querySelector('#borrar-view').appendChild(formBorrar)
+
+        
     }
+
+    let dataDOM = document.getElementById("borrar-view")
+    let idDB;
+
+    dataDOM.addEventListener('click', function(eve){
+        eve.preventDefault()
+        console.log(eve.target.parentElement)
+
+        idDB = eve.target.parentElement.querySelector('a').getAttribute('id')
+        console.log(idDB)
+        BDborrarRef = RealTime.ref("RestauranteData/platoFuerte/" + idDB)
+        BDborrarRef.remove().then(function(){
+            console.log("el plato fue borrado")
+            window.location.reload()
+        })
+        .catch(function(){
+            console.log('algo salio mal')
+        })
+        console.log(BDborrarRef.remove());
+    });
 
 
 }
