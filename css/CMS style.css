@@ -141,3 +141,42 @@ textarea{
     display: flex;
     margin-top: 30px;
 }
+
+
+/* estilos para la X de borrar */
+
+.borrar{
+    color: white;
+    list-style: none;
+    border: none;
+    text-decoration: none;
+    background-color: red;
+    border-radius: 100%;
+    padding: 4px;
+    transition: all 400ms ease;
+}
+
+.borrar:hover{
+    background-color: white;
+    color: red;
+    transform: scale(1.0009);
+}
+
+
+/* estilos para los card de borrar */
+
+.flexible-borrar{
+    
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.flexible-borrar form{
+    
+    margin-top: 30px;
+}
+
+.flexible-borrar form a{
+    cursor: pointer;
+}

@@ -30,6 +30,8 @@
     </div>
 
     <div class="form-container">
+
+        <!-- formulario para subir los platos -->
         <form style="display: none;" id="form-subir" action="" autocomplete="off" aria-required="true">
 
             <label>Elija el tipo de Plato que va a subir</label>
@@ -57,35 +59,12 @@
             <input type="submit" class="enviar" id="btn-subir" value="Subir">
         </form>
         
-        <!-- Formulario para actualiar -->
-
-<!--         <form id="form-update" action="" autocomplete="off" aria-required="true">
-
-            <label>Elija el tipo de Plato al que va a cambiar</label>
-            <br>
-            <select name="" id="tipoPlatoUpdate">
-                <option value="platoFuerte">Plato Fuerte</option>
-                <option value="entradas">Entradas</option>
-                <option value="bebidas">Bebidas</option>
-            </select>
-            <br>
-            
-            <textarea placeholder="Nombre del Plato" id="nombre-platoUpdate"></textarea>
-
-
-            <input type="number" name="" placeholder="Precio del Plato" id="precio-platoUpdate">
-            
-            <br>
-            <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
-            <input type="file" id="img-platoUpdate" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
-
-            <br>
-            <textarea name="" id="descripcion-platoUpdate" placeholder="Descripcion del Plato" cols="15" rows="5"></textarea>
-
-            <input type="submit" class="enviar" id="btn-Update" value="Actualiar">
-        </form> -->
-
+        <!-- area para cargar el formulario desde javascrip para Actualiar -->
         <div style="display: none;" class="flexible" id="update-view"></div>
+
+        <!-- area para cargar el formulario desde javascrip para Borrar -->
+        <div class="flexible-borrar" id="borrar-view"></div>
+
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>

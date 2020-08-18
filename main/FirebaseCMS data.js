@@ -5,7 +5,7 @@ const desPlato = document.getElementById('descripcion-plato');
 const tipoPlato = document.getElementById('tipoPlato')
 const formUp = document.getElementById('form-subir')
 const UpdateView = document.getElementById('update-view')
-
+const BorrarView = document.getElementById('borrar-view')
 
 //controlan la vsta de las opciones del CMS
 const ViewSubir = document.getElementById('btn-crudSubir')
@@ -17,12 +17,21 @@ ViewSubir.addEventListener('click', function(eve){
     eve.preventDefault()
     formUp.classList.add('formDisplay')
     UpdateView.classList.remove('formDisplay')
+    BorrarView.classList.remove('formDisplay')
 });
 
 ViewActualizar.addEventListener('click', function(eve){
     eve.preventDefault()
     UpdateView.classList.add('formDisplay')
     formUp.classList.remove('formDisplay')
+    BorrarView.classList.remove('formDisplay')
+})
+
+ViewBorrar.addEventListener('click',function(eve){
+    eve.preventDefault()
+    BorrarView.classList.add('formDisplay')
+    formUp.classList.remove('formDisplay')
+    UpdateView.classList.remove('formDisplay')
 })
 
 
@@ -111,38 +120,37 @@ window.onload = function(){
             formUpdateLoad.autocomplete = 'off';
             formUpdateLoad.setAttribute('aria-required', 'true')
             formUpdateLoad.innerHTML = `
-        <label>Elija el tipo de Plato al que va a cambiar</label>
-        <br>
-        <select name="" id="tipoPlatoUpdate">
-            <option value="platoFuerte">Plato Fuerte</option>
-            <option value="entradas">Entradas</option>
-            <option value="bebidas">Bebidas</option>
-        </select>
-        <br>
-        <!-- <label for="NombrePlato">Nombre del plato</label> -->
-        <textarea id="nombre-platoUpdate">\`${RealData[data].nombrePlato}\`</textarea>
+                <label>Elija el tipo de Plato al que va a cambiar</label>
+                <br>
+                <select name="" id="tipoPlatoUpdate">
+                    <option value="platoFuerte">Plato Fuerte</option>
+                    <option value="entradas">Entradas</option>
+                    <option value="bebidas">Bebidas</option>
+                </select>
+                <br>
+                <!-- <label for="NombrePlato">Nombre del plato</label> -->
+                <textarea id="nombre-platoUpdate">\ ${RealData[data].nombrePlato}\</textarea>
+                
+                <!-- <label for="precio-plato">Precio del Plato</label> -->
+                <input type="number" name="" placeholder="Precio del Plato" id="precio-platoUpdate">
+                
+                <br>
+                <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
+                <input type="file" id="img-platoUpdate" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+                
+                <br>
+                <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
+                <textarea name="" id="descripcion-platoUpdate" cols="15" rows="5">\ ${RealData[data].desPlato}\</textarea>
+                
+                <input type="submit" onclick="UpdateCard()" class="enviar" id="btn-Update" value="Actualiar">
+            `
         
-        <!-- <label for="precio-plato">Precio del Plato</label> -->
-        <input type="number" name="" placeholder="Precio del Plato" id="precio-platoUpdate">
-        
-        <br>
-        <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
-        <input type="file" id="img-platoUpdate" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
-        
-        <br>
-        <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
-        <textarea name="" id="descripcion-platoUpdate" cols="15" rows="5">\`${RealData[data].desPlato}\`</textarea>
-        
-        <input type="submit" onclick="UpdateCard()" class="enviar" id="btn-Update" value="Actualiar">
-        `
-        
-        document.querySelector('#update-view').appendChild(formUpdateLoad)
+                document.querySelector('#update-view').appendChild(formUpdateLoad)
+
+                
         };//fin de laiteracion que crea y llena los form
-        
+        BorrarPlato(RealData)
     });
-    
-
-
 }
 
 
@@ -172,4 +180,28 @@ function UpdateCard() {
     .catch(function(error){
         console.log('error al subir', error)
     })
+}
+
+
+// funcion para borrar los plato
+
+function BorrarPlato(RealData){
+
+    console.log(RealData)
+
+    //itera los datos para sacarlos de firebase
+    for(var dat in RealData){
+                //creando los datos que van a ser agregados al dom
+        const formSubir = document.createElement('form')
+        formSubir.autocomplete = 'off'
+        formSubir.setAttribute('aria-required', 'true')
+        formSubir.innerHTML = `
+            <p>${RealData[dat].nombrePlato}</p>
+            <a id=${RealData[dat].keyPlato} class="borrar">X<a>
+        `
+        console.log(RealData[dat])
+        document.querySelector('#borrar-view').appendChild(formSubir)
+    }
+
+
 }
