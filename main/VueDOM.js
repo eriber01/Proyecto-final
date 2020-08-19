@@ -14,9 +14,7 @@ const VuePlatoFuerte = new Vue({
         RefPLatoFuerte.on("value", function(snapshot){
                 VuePlatoFuerte.VFuerteDOM = [];
                 var objeto = snapshot.val()
-                var keys = Object.keys(objeto)
-                
-                
+            
                 for(propiedad in objeto){
                     VuePlatoFuerte.VFuerteDOM.unshift({
                         '.key': propiedad,
@@ -24,13 +22,10 @@ const VuePlatoFuerte = new Vue({
                         precio: objeto[propiedad].precioPlato,
                         descripcion: objeto[propiedad].desPlato,
                         urlImg: objeto[propiedad].url,
-                        id: 
+                        dataKey: objeto[propiedad].keyPlato
                     })
 
-                    console.log(objeto[propiedad].nombre)
                 }
-                
-                console.log(keys)
             });
     }
 });
