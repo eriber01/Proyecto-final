@@ -197,6 +197,7 @@ function BorrarPlato(RealData){
         `
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         document.querySelector('#borrar-view').appendChild(formBorrar)
 
@@ -229,6 +230,12 @@ function BorrarPlato(RealData){
 
 >>>>>>> parent of d9b29e7... Modulo de borrar listo
 
+=======
+        console.log(RealData[dat])
+        document.querySelector('#borrar-view').appendChild(formSubir)
+    }
+
+>>>>>>> parent of d9b29e7... Modulo de borrar listo
 =======
         console.log(RealData[dat])
         document.querySelector('#borrar-view').appendChild(formSubir)
