@@ -105,7 +105,7 @@ window.onload = function(){
     Real.on("value", function(snapshot){
     var RealData = snapshot.val()
 
-    console.log('funciona cargar');
+    console.log('funciona');
         for(var data in RealData){
             /* console.log(RealData[data])
 
@@ -155,7 +155,7 @@ window.onload = function(){
 //funcion de la actualizacion de los datos
 
 function UpdateCard() {
-    console.log('funciona acualizar')
+    console.log('funciona')
     alert('funciona')
 
     var RealUpdate = RealTime.ref().child('RestauranteData/PlatoFuerte');
@@ -183,20 +183,19 @@ function UpdateCard() {
 
 function BorrarPlato(RealData){
 
-    console.log('funciona borrar');
+    console.log(RealData)
 
-    let BDborrarRef;
     //itera los datos para sacarlos de firebase
     for(var dat in RealData){
                 //creando los datos que van a ser agregados al dom
-        const formBorrar = document.createElement('form')
-        formBorrar.autocomplete = 'off'
-        formBorrar.setAttribute('aria-required', 'true')
-        formBorrar.innerHTML = `
+        const formSubir = document.createElement('form')
+        formSubir.autocomplete = 'off'
+        formSubir.setAttribute('aria-required', 'true')
+        formSubir.innerHTML = `
             <p>${RealData[dat].nombrePlato}</p>
-            
-            <a id=${RealData[dat].keyPlato} class="borrar">Eliminar<a>
+            <a id=${RealData[dat].keyPlato} class="borrar">X<a>
         `
+<<<<<<< HEAD
 
         document.querySelector('#borrar-view').appendChild(formBorrar)
 
@@ -223,5 +222,11 @@ function BorrarPlato(RealData){
 
 
 
+=======
+        console.log(RealData[dat])
+        document.querySelector('#borrar-view').appendChild(formSubir)
+    }
+
+>>>>>>> parent of d9b29e7... Modulo de borrar listo
 
 }
