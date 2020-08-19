@@ -1,5 +1,5 @@
 //referencias a las 3 ubicacion de los platos en la base de datos
-const RefPLatoFuerte = firebase.database().ref().child('RestauranteData/platoFuerte');
+const RefPLatoFuerte = firebase.database().ref().child('RestauranteData/PlatoFuerte');
 const RefEntradas = firebase.database().ref().child('RestauranteData/entradas')
 const RefBebidas = firebase.database().ref().child('RestauranteData/bebidas')
 
@@ -12,9 +12,11 @@ const VuePlatoFuerte = new Vue({
     mounted() {
 
         RefPLatoFuerte.on("value", function(snapshot){
-                /* console.log(snapshot.val()) */
                 VuePlatoFuerte.VFuerteDOM = [];
                 var objeto = snapshot.val()
+                var keys = Object.keys(objeto)
+                
+                
                 for(propiedad in objeto){
                     VuePlatoFuerte.VFuerteDOM.unshift({
                         '.key': propiedad,
@@ -22,11 +24,13 @@ const VuePlatoFuerte = new Vue({
                         precio: objeto[propiedad].precioPlato,
                         descripcion: objeto[propiedad].desPlato,
                         urlImg: objeto[propiedad].url,
-                        dataKey: objeto[propiedad].keyPlato
+                        id: 
                     })
-                    
-                    /* console.log(objeto[propiedad].keyPlato) */
+
+                    console.log(objeto[propiedad].nombre)
                 }
+                
+                console.log(keys)
             });
     }
 });

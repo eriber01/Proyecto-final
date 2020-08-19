@@ -77,8 +77,7 @@ function subirImgStorage(archivo){
 function firebaseRealTimeUpload(nameImg, ulrImg){
 
     var refRealTime = RealTime.ref().child(`RestauranteData/${tipoPlato.value}`)
-    console.log(refRealTime.push().key);
-    const key = refRealTime.push().key;
+    
     refRealTime.push({
         nombrePlato: nombrePlato.value,
         precioPlato: precioPlato.value,
@@ -86,8 +85,6 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
         tipoPlato: tipoPlato.value,
         url: ulrImg,
         imgName: nameImg,
-        keyPlato: key
-        
     })
     .then(function(docRef){
         console.log("Subida exitosa de datos " + key)
@@ -103,7 +100,7 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
 
 //crea y llena los form del modulo actualizar
 window.onload = function(){
-    var Real = RealTime.ref().child('RestauranteData/platoFuerte');
+    var Real = RealTime.ref().child('RestauranteData/PlatoFuerte');
     
     Real.on("value", function(snapshot){
     var RealData = snapshot.val()
@@ -161,15 +158,14 @@ function UpdateCard() {
     console.log('funciona acualizar')
     alert('funciona')
 
-    var RealUpdate = RealTime.ref().child('RestauranteData/platoFuerte');
+    var RealUpdate = RealTime.ref().child('RestauranteData/PlatoFuerte');
     
     RealUpdate.update({
         nombrePlato: nombrePlato.value,
         precioPlato: precioPlato.value,
         desPlato: desPlato.value,
         tipoPlato: tipoPlato.value
-        /*  url: ulrImg,
-        imgName: nameImg */
+
         
     })
     .then(function(docRef){
@@ -204,28 +200,28 @@ function BorrarPlato(RealData){
 
         document.querySelector('#borrar-view').appendChild(formBorrar)
 
-        
+
+        //toma el id y borra los datos de firebase
+        let dataDOM = document.getElementById(`${RealData[dat].keyPlato}`)
+    
+        let idDB;
+    
+        dataDOM.addEventListener('click', function(eve){
+            eve.preventDefault()
+
+            BDborrarRef = RealTime.ref(`RestauranteData/PlatoFuerte/${RealData[dat].keyPlato}`)
+            BDborrarRef.remove().then(function(){
+                console.log("el plato fue borrado")
+                /* window.location.reload() */
+            })
+            .catch(function(){
+                console.log('algo salio mal')
+            })
+            console.log(BDborrarRef.remove());
+        });
     }
 
-    let dataDOM = document.getElementById("borrar-view")
-    let idDB;
 
-    dataDOM.addEventListener('click', function(eve){
-        eve.preventDefault()
-        console.log(eve.target.parentElement)
-
-        idDB = eve.target.parentElement.querySelector('a').getAttribute('id')
-        console.log(idDB)
-        BDborrarRef = RealTime.ref("RestauranteData/platoFuerte/" + idDB)
-        BDborrarRef.remove().then(function(){
-            console.log("el plato fue borrado")
-            window.location.reload()
-        })
-        .catch(function(){
-            console.log('algo salio mal')
-        })
-        console.log(BDborrarRef.remove());
-    });
 
 
 }
