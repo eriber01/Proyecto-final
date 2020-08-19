@@ -195,10 +195,6 @@ function BorrarPlato(RealData){
             <p>${RealData[dat].nombrePlato}</p>
             <a id=${RealData[dat].keyPlato} class="borrar">X<a>
         `
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
         document.querySelector('#borrar-view').appendChild(formBorrar)
 
 
@@ -221,26 +217,3 @@ function BorrarPlato(RealData){
             console.log(BDborrarRef.remove());
         });
     }
-
-
-=======
-        console.log(RealData[dat])
-        document.querySelector('#borrar-view').appendChild(formSubir)
-    }
-
->>>>>>> parent of d9b29e7... Modulo de borrar listo
-
-=======
-        console.log(RealData[dat])
-        document.querySelector('#borrar-view').appendChild(formSubir)
-    }
-
->>>>>>> parent of d9b29e7... Modulo de borrar listo
-=======
-        console.log(RealData[dat])
-        document.querySelector('#borrar-view').appendChild(formSubir)
-    }
-
->>>>>>> parent of d9b29e7... Modulo de borrar listo
-
-}
