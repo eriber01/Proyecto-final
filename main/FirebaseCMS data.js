@@ -53,8 +53,24 @@ formUp.addEventListener('submit', function(eve){
     //seleciona y sube la imagen a firebase storage
     var archivo = eve.target[3].files[0];
 
-    /* console.log(archivo.name) */
-    subirImgStorage(archivo)
+    //carga la funcion que sube los datos y pide la confirmacion
+    swal({
+        title: "Estas seguro?",
+        text: "Si continuas, el Plato sera agregado a la Base Datos!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            swal("Listo! Su Plato a sido agregado a la Base de Datos!", {
+            icon: "success",
+            });
+            subirImgStorage(archivo)
+        } else {
+            swal("A cancelado la creacion del Plato!");
+        }
+    });
 })
 
 //funcion sube la imagen a firebase storage
@@ -211,17 +227,39 @@ function BorrarPlato(){
         eve.preventDefault()
         console.log(eve.target.parentElement)
 
-        idDB = eve.target.parentElement.querySelector('a').getAttribute('id')
-        console.log(idDB)
-        BDborrarRef = RealTime.ref("RestauranteData/PlatoFuerte/" + idDB)
-        BDborrarRef.remove().then(function(){
-            console.log("el plato fue borrado")
-            window.location.reload()
+
+
+        swal({
+            title: "Estas seguro?",
+            text: "Si continuas, no podras recuperar los datos!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
         })
-        .catch(function(){
-            console.log('algo salio mal')
-        })
-        console.log(BDborrarRef.remove());
+        .then((willDelete) => {
+            if (willDelete) {
+
+                idDB = eve.target.parentElement.querySelector('a').getAttribute('id')
+                console.log(idDB)
+                BDborrarRef = RealTime.ref("RestauranteData/PlatoFuerte/" + idDB)
+                BDborrarRef.remove().then(function(){
+                    console.log("el plato fue borrado")
+                })
+                .catch(function(){
+                    console.log('algo salio mal')
+                })
+
+                swal("Listo! El Plato a sido Eliminado de la base de datos", {
+                icon: "success"});
+
+                setTimeout(function(){
+                    location.reload()
+                },2000)
+            } else {
+                swal("A cancelado la Eliminacion del plato");
+            }
+        });
+        
     });
 
 

@@ -36,25 +36,25 @@
 
             <label>Elija el tipo de Plato que va a subir</label>
             <br>
-            <select name="" id="tipoPlato">
+            <select name="" id="tipoPlato" aria-required="true">
                 <option value="PlatoFuerte">Plato Fuerte</option>
                 <option value="entradas">Entradas</option>
                 <option value="bebidas">Bebidas</option>
             </select>
             <br>
             <!-- <label for="NombrePlato">Nombre del plato</label> -->
-            <input type="text" placeholder="Nombre del Plato" id="nombre-plato">
+            <input type="text" placeholder="Nombre del Plato" id="nombre-plato" aria-required="true">
 
             <!-- <label for="precio-plato">Precio del Plato</label> -->
-            <input type="number" name="" value="0" placeholder="Precio del Plato" id="precio-plato">
+            <input type="number" name="" value="0" placeholder="Precio del Plato" id="precio-plato" aria-required="true">
             
             <br>
             
-            <input type="file" id="img-plato" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+            <input type="file" id="img-plato" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg" aria-required="true">
 
             <br>
             <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
-            <textarea name="" id="descripcion-plato" placeholder="Descripcion del Plato" cols="15" rows="5"></textarea>
+            <textarea name="" id="descripcion-plato" placeholder="Descripcion del Plato" cols="15" rows="5" aria-required="true"></textarea>
 
             <input type="submit" class="enviar" id="btn-subir" value="Subir">
         </form>
@@ -73,17 +73,16 @@
                     </select> -->
                     <br>
                     
-                    <input type="text" v-bind:placeholder="vueUpdate.nombre">
+                    <input type="text" v-bind:placeholder="vueUpdate.nombre" aria-required="true">
                     
-                    <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2">
+                    <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2" aria-required="true">
                     
                     <br>
                     <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
-                    <input type="file" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
                     
                     <br>
 
-                    <textarea name="" v-bind:placeholder="vueUpdate.descripcion" cols="15" rows="5"></textarea>
+                    <textarea name="" v-bind:placeholder="vueUpdate.descripcion" cols="15" rows="5" aria-required="true"></textarea>
                     
                     <input type="submit" class="enviar" value="Actualiar">
                 </form>
@@ -101,11 +100,11 @@
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main/FirebaseInitializeApp.js"></script>
     <script src="main/FirebaseCMS data.js"></script>
-    
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
 </html>
