@@ -46,10 +46,10 @@
             <input type="text" placeholder="Nombre del Plato" id="nombre-plato">
 
             <!-- <label for="precio-plato">Precio del Plato</label> -->
-            <input type="number" name="" placeholder="Precio del Plato" id="precio-plato">
+            <input type="number" name="" value="0" placeholder="Precio del Plato" id="precio-plato">
             
             <br>
-            <label class="lb-img" for="img-plato">Selecione la imagen del plato</label>
+            
             <input type="file" id="img-plato" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
 
             <br>
@@ -60,7 +60,34 @@
         </form>
         
         <!-- area para cargar el formulario desde javascrip para Actualiar -->
-        <div style="display: none;" class="flexible" id="update-view"></div>
+        <div  class="flexible" id="update-view">
+
+            <form action="" v-bind:id="vueUpdate.id" v-for='vueUpdate in VueUpdate' autocomplete="off" aria-required="true">
+                <label>Elija el tipo de Plato al que va a cambiar</label>
+                <br>
+                <select name="" id="tipoPlato2">
+                    <option value="platoFuerte">Plato Fuerte</option>
+                    <option value="entradas">Entradas</option>
+                    <option value="bebidas">Bebidas</option>
+                </select>
+                <br>
+                
+                <textarea id="nombre-plato2" v-bind:placeholder="vueUpdate.nombre"></textarea>
+                
+                <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2">
+                
+                <br>
+                <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
+                <input type="file" id="img-plato2" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+                
+                <br>
+
+                <textarea name="" v-bind:placeholder="vueUpdate.descripcion" id="descripcion-plato2" cols="15" rows="5"></textarea>
+                
+                <input type="submit" class="enviar" value="Actualiar">
+            </form>
+
+        </div>
 
         <!-- area para cargar el formulario desde javascrip para Borrar -->
         <div style="display: none;" class="flexible-borrar" id="borrar-view"></div>
@@ -69,9 +96,10 @@
 
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main/FirebaseInitializeApp.js"></script>
     <script src="main/FirebaseCMS data.js"></script>
-
+    
 
 </body>
 </html>

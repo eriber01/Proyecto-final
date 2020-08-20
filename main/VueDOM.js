@@ -22,7 +22,7 @@ const VuePlatoFuerte = new Vue({
                         precio: objeto[propiedad].precioPlato,
                         descripcion: objeto[propiedad].desPlato,
                         urlImg: objeto[propiedad].url,
-                        dataKey: objeto[propiedad].keyPlato
+                        id: objeto[propiedad].IDkey
                     })
 
                 }
@@ -98,10 +98,10 @@ document.addEventListener('DOMContentLoaded',function(eve){
         data = snapshot.val()
     
             for(dat in data){
-                id: data[dat].keyPlato
                 
+                console.log(data[dat].IDkey)
                 //hace referencia al boton de agregar al carrito
-                const brn_Carrito = document.querySelector(`#${data[dat].keyPlato}`)
+                const brn_Carrito = document.querySelector(`#${data[dat].IDkey}`)
 
                 //evento que se ejecuta al hacer click en el boton agregar carrito
                 brn_Carrito.addEventListener('click', function(eve){

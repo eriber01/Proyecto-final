@@ -1,9 +1,18 @@
-//variables para la info de los card
+//variables para el metodo subir
 const nombrePlato = document.getElementById('nombre-plato');
 const precioPlato = document.getElementById('precio-plato');
 const desPlato = document.getElementById('descripcion-plato');
 const tipoPlato = document.getElementById('tipoPlato')
+
+
+
+
+
+//controla los submit
 const formUp = document.getElementById('form-subir')
+const form_update = document.getElementById("form-update")
+
+//controla las vistas
 const UpdateView = document.getElementById('update-view')
 const BorrarView = document.getElementById('borrar-view')
 
@@ -77,22 +86,23 @@ function subirImgStorage(archivo){
 function firebaseRealTimeUpload(nameImg, ulrImg){
 
     var refRealTime = RealTime.ref().child(`RestauranteData/${tipoPlato.value}`)
-    console.log(refRealTime.push().key);
-    const key = refRealTime.push().key;
+
     refRealTime.push({
         nombrePlato: nombrePlato.value,
         precioPlato: precioPlato.value,
         desPlato: desPlato.value,
         tipoPlato: tipoPlato.value,
         url: ulrImg,
-        imgName: nameImg,
-        keyPlato: key
-        
+        imgName: nameImg
     })
     .then(function(docRef){
-        console.log("Subida exitosa de datos " + key)
-        console.log(docRef)
-        formUp.reset()
+        console.log("Subida exitosa de datos ")
+        let key = docRef.path.o[2]
+        let refUpdate = RealTime.ref().child(`RestauranteData/${tipoPlato.value}/${key}`);
+        refUpdate.update({
+            IDkey:key
+        })
+        window.location.reload()
     })
     .catch(function(error){
         console.log('error al subir', error)
@@ -100,86 +110,75 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
 }
 
 
+//carga los datos desde firebase y los procesa en el DOM con Vue.js
+let Real = RealTime.ref().child('RestauranteData/PlatoFuerte');
 
-//crea y llena los form del modulo actualizar
-window.onload = function(){
-    var Real = RealTime.ref().child('RestauranteData/platoFuerte');
-    
-    Real.on("value", function(snapshot){
-    var RealData = snapshot.val()
+const VueCMSupdate = new Vue({
+    el: '#update-view',
+    data:{
+        VueUpdate: []
+    },
+    mounted(){
+        Real.on('value', function(snapshot){
+            VueCMSupdate.VueUpdate = []
+            let objeto = snapshot.val()
 
-    console.log('funciona cargar');
-        for(var data in RealData){
-            /* console.log(RealData[data])
-            console.log(parseInt(RealData[data].precioPlato));
-            console.log(RealData.key);
-            console.log(snapshot.val()) */
-            
-            const formUpdateLoad = document.createElement('form')
-            formUpdateLoad.autocomplete = 'off';
-            formUpdateLoad.setAttribute('aria-required', 'true')
-            formUpdateLoad.innerHTML = `
-                <label>Elija el tipo de Plato al que va a cambiar</label>
-                <br>
-                <select name="" id="tipoPlatoUpdate">
-                    <option value="platoFuerte">Plato Fuerte</option>
-                    <option value="entradas">Entradas</option>
-                    <option value="bebidas">Bebidas</option>
-                </select>
-                <br>
-                <!-- <label for="NombrePlato">Nombre del plato</label> -->
-                <textarea id="nombre-platoUpdate">\ ${RealData[data].nombrePlato}\</textarea>
-                
-                <!-- <label for="precio-plato">Precio del Plato</label> -->
-                <input type="number" name="" placeholder="Precio del Plato" id="precio-platoUpdate">
-                
-                <br>
-                <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
-                <input type="file" id="img-platoUpdate" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
-                
-                <br>
-                <!-- <label for="DescripcionPlato">Descripcion Plato</label> -->
-                <textarea name="" id="descripcion-platoUpdate" cols="15" rows="5">\ ${RealData[data].desPlato}\</textarea>
-                
-                <input type="submit" onclick="UpdateCard()" class="enviar" id="btn-Update" value="Actualiar">
-            `
-        
-                document.querySelector('#update-view').appendChild(formUpdateLoad)
-
-                
-        };//fin de laiteracion que crea y llena los form
-        BorrarPlato(RealData)
-    });
-}
-
-
+            for(data in objeto){
+                VueCMSupdate.VueUpdate.unshift({
+                    nombre: objeto[data].nombrePlato,
+                    descripcion: objeto[data].desPlato,
+                    precio: objeto[data].precioPlato,
+                    id: objeto[data].IDkey
+                })
+                console.log(objeto)
+            }
+        });
+    }
+})
 
 //funcion de la actualizacion de los datos
 
-function UpdateCard() {
-    console.log('funciona acualizar')
-    alert('funciona')
+document.addEventListener('DOMContentLoaded', function(eve){
+    eve.preventDefault()
+    setTimeout(function(){
 
-    var RealUpdate = RealTime.ref().child('RestauranteData/platoFuerte');
-    
-    RealUpdate.update({
-        nombrePlato: nombrePlato.value,
-        precioPlato: precioPlato.value,
-        desPlato: desPlato.value,
-        tipoPlato: tipoPlato.value
-        /*  url: ulrImg,
-        imgName: nameImg */
-        
-    })
-    .then(function(docRef){
-        console.log("actualizacion exitosa de datos")
-        alert('funciona')
-        console.log(docRef)
-    })
-    .catch(function(error){
-        console.log('error al subir', error)
-    })
-}
+        let objeto;
+        Real.on('value', function(snapshot){
+            objeto = snapshot.val()
+            for(data in objeto){
+
+                const bntUpdate = document.getElementById(`${objeto[data].IDkey}`)
+
+                bntUpdate.addEventListener('submit', function(eve){
+                    eve.preventDefault()
+                    let RealUpdate = RealTime.ref().child(`RestauranteData/PlatoFuerte/${objeto[data].IDkey}`);
+                    
+                    //variables para el metodo actualizar
+                    const nombrePlato2 = document.getElementById('nombre-plato2');
+                    const precioPlato2 = document.getElementById('precio-plato2');
+                    const desPlato2 = document.getElementById('descripcion-plato2');
+                    const tipoPlato2 = document.getElementById('tipoPlato2')
+
+                    RealUpdate.update({
+                        nombrePlato: nombrePlato2.value,
+                        precioPlato: precioPlato2.value,
+                        desPlato: desPlato2.value,
+                        tipoPlato: tipoPlato2.value
+                    })
+                    .then(function(docRef){
+                        console.log("actualizacion exitosa de datos")
+                        
+                    })
+                    .catch(function(error){
+                        console.log('error al subir', error)
+                    })
+                })
+                
+            }
+        })
+
+    },3000)
+})
 
 
 // funcion para borrar los plato
@@ -198,7 +197,7 @@ function BorrarPlato(RealData){
         formBorrar.innerHTML = `
             <p>${RealData[dat].nombrePlato}</p>
             
-            <a id=${RealData[dat].keyPlato} class="borrar">Eliminar<a>
+            <a id=${RealData[dat].IDkey} class="borrar">Eliminar<a>
         `
 
         document.querySelector('#borrar-view').appendChild(formBorrar)
@@ -215,7 +214,7 @@ function BorrarPlato(RealData){
 
         idDB = eve.target.parentElement.querySelector('a').getAttribute('id')
         console.log(idDB)
-        BDborrarRef = RealTime.ref("RestauranteData/platoFuerte/" + idDB)
+        BDborrarRef = RealTime.ref("RestauranteData/PlatoFuerte/" + idDB)
         BDborrarRef.remove().then(function(){
             console.log("el plato fue borrado")
             window.location.reload()
