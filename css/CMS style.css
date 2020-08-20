@@ -65,22 +65,29 @@ button:hover{
     display: flex !important;
 }
 
-form{
+
+#form-subir{
+    width: 30%;
+    margin: auto;
+}
+#form-subir, #UpdateVue form{
     /* display: none; */
     flex-direction: column;
     justify-content: center;
-    width: 30%;
+
     height: 80%;
     padding: 20px;
     background-color: #c6efe6;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;
-    margin: 60px;
-    margin: auto;
+    
     text-align: center;
     transition: all 600ms ease;
 }
 
+#UpdateVue form{
+    margin: 20px;
+}
 option{
     background-color: #c6efe6;
 }
@@ -131,10 +138,12 @@ textarea{
 /* diseno para el form update */
 
 .flexible{
-    width: 70%;
+    display: flex;
+    width: 100%;
     height: 100%;
     flex-wrap: wrap;
-    margin: auto;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .flexible form{
@@ -166,15 +175,28 @@ textarea{
 /* estilos para los card de borrar */
 
 .flexible-borrar{
-    
+    width: 100%;
+    height: 100%;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
     flex-wrap: wrap;
 }
 
 
 .flexible-borrar form{
+
     
-    margin-top: 30px;
+    width: 20%;
+    height: 80%;
+    padding: 10px;
+    background-color: #c6efe6;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 10px;    
+    text-align: center;
+    transition: all 600ms ease;
+    margin: 0.5rem;
 }
 
 .flexible-borrar form a{

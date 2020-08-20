@@ -60,37 +60,43 @@
         </form>
         
         <!-- area para cargar el formulario desde javascrip para Actualiar -->
-        <div  class="flexible" id="update-view">
+        <div style="display: none;" id="update-view"> 
+            <div  class="flexible" id="UpdateVue">
 
-            <form action="" v-bind:id="vueUpdate.id" v-for='vueUpdate in VueUpdate' autocomplete="off" aria-required="true">
-                <label>Elija el tipo de Plato al que va a cambiar</label>
-                <br>
-                <select name="" id="tipoPlato2">
-                    <option value="platoFuerte">Plato Fuerte</option>
-                    <option value="entradas">Entradas</option>
-                    <option value="bebidas">Bebidas</option>
-                </select>
-                <br>
-                
-                <textarea id="nombre-plato2" v-bind:placeholder="vueUpdate.nombre"></textarea>
-                
-                <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2">
-                
-                <br>
-                <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
-                <input type="file" id="img-plato2" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
-                
-                <br>
+                <form action="" v-bind:id="vueUpdate.id" v-for='vueUpdate in VueUpdate' autocomplete="off" aria-required="true">
+                    <label>Datos Actuales del Plato</label>
+    <!--                 <br>
+                    <select name="">
+                        <option value="platoFuerte">Plato Fuerte</option>
+                        <option value="entradas">Entradas</option>
+                        <option value="bebidas">Bebidas</option>
+                    </select> -->
+                    <br>
+                    
+                    <input type="text" v-bind:placeholder="vueUpdate.nombre">
+                    
+                    <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2">
+                    
+                    <br>
+                    <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
+                    <input type="file" alt="" placeholder="Selecione la imagen del plato" accept="image/png, .jpeg, .jpg">
+                    
+                    <br>
 
-                <textarea name="" v-bind:placeholder="vueUpdate.descripcion" id="descripcion-plato2" cols="15" rows="5"></textarea>
-                
-                <input type="submit" class="enviar" value="Actualiar">
-            </form>
+                    <textarea name="" v-bind:placeholder="vueUpdate.descripcion" cols="15" rows="5"></textarea>
+                    
+                    <input type="submit" class="enviar" value="Actualiar">
+                </form>
 
+            </div>
         </div>
 
         <!-- area para cargar el formulario desde javascrip para Borrar -->
-        <div style="display: none;" class="flexible-borrar" id="borrar-view"></div>
+        <div style="display: none;"  id="borrar-view">
+            <div class="flexible-borrar" id="BorrarVue">
+
+            </div>
+        </div>
 
     </div>
 

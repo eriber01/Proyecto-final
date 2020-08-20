@@ -5,12 +5,8 @@ const desPlato = document.getElementById('descripcion-plato');
 const tipoPlato = document.getElementById('tipoPlato')
 
 
-
-
-
 //controla los submit
 const formUp = document.getElementById('form-subir')
-const form_update = document.getElementById("form-update")
 
 //controla las vistas
 const UpdateView = document.getElementById('update-view')
@@ -41,6 +37,8 @@ ViewBorrar.addEventListener('click',function(eve){
     BorrarView.classList.add('formDisplay')
     formUp.classList.remove('formDisplay')
     UpdateView.classList.remove('formDisplay')
+
+    console.log('se ve')
 })
 
 
@@ -110,11 +108,11 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
 }
 
 
-//carga los datos desde firebase y los procesa en el DOM con Vue.js
+//carga los datos del modulo actualizar desde firebase y los procesa en el DOM con Vue.js
 let Real = RealTime.ref().child('RestauranteData/PlatoFuerte');
 
 const VueCMSupdate = new Vue({
-    el: '#update-view',
+    el: '#UpdateVue',
     data:{
         VueUpdate: []
     },
@@ -137,7 +135,6 @@ const VueCMSupdate = new Vue({
 })
 
 //funcion de la actualizacion de los datos
-
 document.addEventListener('DOMContentLoaded', function(eve){
     eve.preventDefault()
     setTimeout(function(){
@@ -153,17 +150,20 @@ document.addEventListener('DOMContentLoaded', function(eve){
                     eve.preventDefault()
                     let RealUpdate = RealTime.ref().child(`RestauranteData/PlatoFuerte/${objeto[data].IDkey}`);
                     
-                    //variables para el metodo actualizar
-                    const nombrePlato2 = document.getElementById('nombre-plato2');
-                    const precioPlato2 = document.getElementById('precio-plato2');
-                    const desPlato2 = document.getElementById('descripcion-plato2');
-                    const tipoPlato2 = document.getElementById('tipoPlato2')
+                    const ObjetoData = eve.target;
+                    
+                    const ObjetoUpdate = {
+                        nombre: ObjetoData.querySelector("input[type=text]").value,
+                        precio: ObjetoData.querySelector("input[type=number]").value,
+                        descripcion: ObjetoData.querySelector('textarea').value
+                    }
 
+                    console.log(ObjetoUpdate)
+                    
                     RealUpdate.update({
-                        nombrePlato: nombrePlato2.value,
-                        precioPlato: precioPlato2.value,
-                        desPlato: desPlato2.value,
-                        tipoPlato: tipoPlato2.value
+                        nombrePlato: ObjetoUpdate.nombre,
+                        precioPlato: ObjetoUpdate.precio,
+                        desPlato: ObjetoUpdate.descripcion
                     })
                     .then(function(docRef){
                         console.log("actualizacion exitosa de datos")
@@ -173,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function(eve){
                         console.log('error al subir', error)
                     })
                 })
-                
             }
         })
 
@@ -181,31 +180,31 @@ document.addEventListener('DOMContentLoaded', function(eve){
 })
 
 
-// funcion para borrar los plato
+// funcion para borrar los platos
+document.addEventListener('DOMContentLoaded', BorrarPlato())
 
-function BorrarPlato(RealData){
+function BorrarPlato(){
 
     console.log('funciona borrar');
 
-    let BDborrarRef;
     //itera los datos para sacarlos de firebase
-    for(var dat in RealData){
-                //creando los datos que van a ser agregados al dom
-        const formBorrar = document.createElement('form')
-        formBorrar.autocomplete = 'off'
-        formBorrar.setAttribute('aria-required', 'true')
-        formBorrar.innerHTML = `
-            <p>${RealData[dat].nombrePlato}</p>
-            
-            <a id=${RealData[dat].IDkey} class="borrar">Eliminar<a>
-        `
+    Real.on('value', function(snapshot){
+        objeto = snapshot.val()
+        for(var data in objeto){
+            //creando los datos que van a ser agregados al dom
+            const Btn_Borrar = document.createElement('form')
+            Btn_Borrar.innerHTML = `
+                <p>${objeto[data].nombrePlato}</p>
+                
+                <a id=${objeto[data].IDkey} class="borrar">Eliminar<a>
+            `
+            document.querySelector('#BorrarVue').appendChild(Btn_Borrar)
+        }
+    })
+    let BDborrarRef;
 
-        document.querySelector('#borrar-view').appendChild(formBorrar)
 
-        
-    }
-
-    let dataDOM = document.getElementById("borrar-view")
+    let dataDOM = document.getElementById("BorrarVue")
     let idDB;
 
     dataDOM.addEventListener('click', function(eve){
