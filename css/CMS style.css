@@ -65,13 +65,12 @@ button:hover{
     display: flex !important;
 }
 
-
 #form-subir{
     width: 30%;
     margin: auto;
 }
-#form-subir, #UpdateVue form{
-    /* display: none; */
+#form-subir, #VuePlatoFuerte form, #VueEntradas form, #VueBebidas form{
+    display: flex;
     flex-direction: column;
     justify-content: center;
 
@@ -83,13 +82,12 @@ button:hover{
     
     text-align: center;
     transition: all 600ms ease;
+
+    margin: 30px;
 }
 
-#UpdateVue form{
-    margin: 20px;
-}
-option{
-    background-color: #c6efe6;
+#update-view{
+    flex-direction: column;
 }
 input{
     border: none;
@@ -136,6 +134,9 @@ textarea{
 
 
 /* diseno para el form update */
+.no{
+    display: none;
+}
 
 .flexible{
     display: flex;
@@ -201,4 +202,61 @@ textarea{
 
 .flexible-borrar form a{
     cursor: pointer;
+}
+
+.select{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.select select{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #000;
+    
+}
+
+
+/* estilos extras para la selecion del plato */
+#tipoPlato{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+h2{
+    text-align: center;
+}
+
+#tipoPlato div{
+    border-radius: 5px;
+    box-shadow: black 1px 1px 5px;
+    padding: 10px;
+    color: white;
+    font-size: 1.2rem;
+
+    transition: all 300ms ease;
+}
+
+#tipoPlato #selectFuerte {
+    background-color: violet;
+    cursor: pointer;
+}
+
+#tipoPlato #selectEntrada{
+    background-color: teal;
+    cursor: pointer;
+}
+
+#tipoPlato #selectBebidas{
+    background-color: tomato;
+    cursor: pointer;
+}
+
+#tipoPlato #selectFuerte:hover, #tipoPlato #selectBebidas:hover, #tipoPlato #selectEntrada:hover{
+    transform: scale(1.1);
 }

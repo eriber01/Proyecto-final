@@ -1,9 +1,20 @@
-//variables para el metodo subir
+//variables para el metodo subir, actualizar y borrar
 const nombrePlato = document.getElementById('nombre-plato');
 const precioPlato = document.getElementById('precio-plato');
 const desPlato = document.getElementById('descripcion-plato');
 const tipoPlato = document.getElementById('tipoPlato')
+const tipoPlatoUpdate = document.getElementById('tipoPlato-update')
+const tipoPlatoBorrar = document.getElementById('tipoPlato-borrar')
 
+
+//controla la selecion del tipo de plato a editar
+const selectFuerte = document.getElementById("selectFuerte")
+const selectEntrada = document.getElementById("selectEntrada")
+const selectBebidas = document.getElementById("selectBebidas")
+
+const ViewPlatoFuerte = document.getElementById('vistaFuerte')
+const ViewEntrada = document.getElementById('vistaEntrada')
+const ViewBebida = document.getElementById('vistaBebida')
 
 //controla los submit
 const formUp = document.getElementById('form-subir')
@@ -20,6 +31,7 @@ const ViewBorrar = document.getElementById('btn-crudBorrar')
 //dispara los eventos que muestra las opciones del CMS
 ViewSubir.addEventListener('click', function(eve){
     eve.preventDefault()
+
     formUp.classList.add('formDisplay')
     UpdateView.classList.remove('formDisplay')
     BorrarView.classList.remove('formDisplay')
@@ -123,102 +135,259 @@ function firebaseRealTimeUpload(nameImg, ulrImg){
     });
 }
 
-
-//carga los datos del modulo actualizar desde firebase y los procesa en el DOM con Vue.js
-let Real = RealTime.ref().child('RestauranteData/PlatoFuerte');
-
-const VueCMSupdate = new Vue({
-    el: '#UpdateVue',
-    data:{
-        VueUpdate: []
-    },
-    mounted(){
-        Real.on('value', function(snapshot){
-            VueCMSupdate.VueUpdate = []
-            let objeto = snapshot.val()
-
-            for(data in objeto){
-                VueCMSupdate.VueUpdate.unshift({
-                    nombre: objeto[data].nombrePlato,
-                    descripcion: objeto[data].desPlato,
-                    precio: objeto[data].precioPlato,
-                    id: objeto[data].IDkey
-                })
-                console.log(objeto)
-            }
-        });
-    }
-})
-
-//funcion de la actualizacion de los datos
-document.addEventListener('DOMContentLoaded', function(eve){
+//sube las actualizaciones de los platos fuertes
+selectFuerte.addEventListener('click', function(eve){
     eve.preventDefault()
-    setTimeout(function(){
 
-        let objeto;
-        Real.on('value', function(snapshot){
-            objeto = snapshot.val()
-            for(data in objeto){
+        ViewPlatoFuerte.classList.toggle('no')
+        ViewEntrada.classList.add('no')
+        ViewBebida.classList.add('no')
 
-                const bntUpdate = document.getElementById(`${objeto[data].IDkey}`)
+        RealFuerte = RealTime.ref().child(`RestauranteData/PlatoFuerte`);
+        let objetoFuerte;
+        //recorrido de los datos del plato fuerte
+        RealFuerte.on('value', function(snapshot){
+            objetoFuerte = snapshot.val()
+            for(dataFuerte in objetoFuerte){
 
-                bntUpdate.addEventListener('submit', function(eve){
+                const bntUpdate = document.getElementById(`${objetoFuerte[dataFuerte].IDkey}`)
+                
+                bntUpdate.addEventListener('click', function(eve){
                     eve.preventDefault()
-                    let RealUpdate = RealTime.ref().child(`RestauranteData/PlatoFuerte/${objeto[data].IDkey}`);
                     
-                    const ObjetoData = eve.target;
+                    let RealUpdate = RealTime.ref().child(`RestauranteData/PlatoFuerte/${objetoFuerte[dataFuerte].IDkey}`);
                     
+                    const ObjetoData = eve.target.parentElement;
                     const ObjetoUpdate = {
                         nombre: ObjetoData.querySelector("input[type=text]").value,
                         precio: ObjetoData.querySelector("input[type=number]").value,
                         descripcion: ObjetoData.querySelector('textarea').value
                     }
-
-                    console.log(ObjetoUpdate)
-                    
-                    RealUpdate.update({
-                        nombrePlato: ObjetoUpdate.nombre,
-                        precioPlato: ObjetoUpdate.precio,
-                        desPlato: ObjetoUpdate.descripcion
-                    })
-                    .then(function(docRef){
-                        console.log("actualizacion exitosa de datos")
-                        
-                    })
-                    .catch(function(error){
-                        console.log('error al subir', error)
-                    })
+                    UpdateData(RealUpdate, ObjetoUpdate)
                 })
             }
         })
-
-    },3000)
 })
 
 
+selectEntrada.addEventListener('click', function(eve){
+    eve.preventDefault()
+
+    ViewEntrada.classList.toggle('no')
+    ViewPlatoFuerte.classList.add('no')
+    ViewBebida.classList.add('no')
+
+    let objetoEntrada;
+    RealEntradas = RealTime.ref().child(`RestauranteData/entradas`);
+    RealEntradas.on('value', function(snapshot){
+        objetoEntrada = snapshot.val()
+        for(dataEntrada in objetoEntrada){
+
+            const bntUpdateEntrada = document.getElementById(`${objetoEntrada[dataEntrada].IDkey}`)
+            
+            bntUpdateEntrada.addEventListener('click', function(eve){
+                eve.preventDefault()
+
+                let RealUpdateEntrada; 
+                
+                RealUpdateEntrada = RealTime.ref().child(`RestauranteData/entradas/${objetoEntrada[dataEntrada].IDkey}`);
+                
+                //console.log(objetoEntrada[dataEntrada].IDkey)
+                const ObjetoDataEntrada = eve.target.parentElement;
+                const ObjetoUpdateEntrada = {
+                    nombre: ObjetoDataEntrada.querySelector("input[type=text]").value,
+                    precio: ObjetoDataEntrada.querySelector("input[type=number]").value,
+                    descripcion: ObjetoDataEntrada.querySelector('textarea').value
+                }
+
+                //console.log(ObjetoUpdateEntrada + ' ads ' + RealUpdateEntrada)
+                UpdateData(RealUpdateEntrada, ObjetoUpdateEntrada)
+            })
+        }
+    })
+
+})
+
+
+selectBebidas.addEventListener('click', function(eve){
+    eve.preventDefault()
+
+    ViewBebida.classList.toggle('no')
+    ViewEntrada.classList.add('no')
+    ViewPlatoFuerte.classList.add('no')
+    RealBebidas = RealTime.ref().child(`RestauranteData/bebidas`);
+    let objetoBebidas
+    RealBebidas.on('value', function(snapshot){
+        objetoBebidas = snapshot.val()
+        for(dataBebidas in objetoBebidas){
+
+            const bntUpdateBebidas = document.getElementById(`${objetoBebidas[dataBebidas].IDkey}`)
+            
+            bntUpdateBebidas.addEventListener('click', function(eve){
+                eve.preventDefault()
+
+                let RealUpdateBebidas; 
+                
+                RealUpdateBebidas = RealTime.ref().child(`RestauranteData/bebidas/${objetoBebidas[dataBebidas].IDkey}`);
+                
+                //console.log(objetoBebidas[dataEntrada].IDkey)
+                const ObjetoDataBebidas = eve.target.parentElement;
+                const ObjetoUpdateBebidas = {
+                    nombre: ObjetoDataBebidas.querySelector("input[type=text]").value,
+                    precio: ObjetoDataBebidas.querySelector("input[type=number]").value,
+                    descripcion: ObjetoDataBebidas.querySelector('textarea').value
+                }
+
+                UpdateData(RealUpdateBebidas, ObjetoUpdateBebidas)
+
+            })
+        }
+    })
+})
+
+///funcion para actualizar los datos
+function UpdateData(ref, objeto){
+
+
+    swal({
+        title: "Esta seguro?",
+        text: "Si continua, los seran editados!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            ref.update({
+                nombrePlato: objeto.nombre,
+                precioPlato: objeto.precio,
+                desPlato: objeto.descripcion
+            })
+            .then(function(docRef){
+                console.log("actualizacion exitosa de datos")
+            })
+            .catch(function(error){
+                console.log('error al subir', error)
+            })
+
+        swal("Listo! El plato ah Sido actualizado!", {
+            icon: "success",
+        });
+
+        setTimeout(function(){
+            location.reload()
+        },3000)
+        } else {
+        swal("Ah cancelado los datos siguen igual");
+        }
+    });
+}
+
 // funcion para borrar los platos
-document.addEventListener('DOMContentLoaded', BorrarPlato())
-
-function BorrarPlato(){
-
+document.addEventListener('DOMContentLoaded', function(){
     console.log('funciona borrar');
 
+        //plato fuerte
+        cargarPlatoFuerte()
+
+        //entrada
+        cargarEntrada()
+
+        //bebidas
+        cargarBebidas()
+})
+
     //itera los datos para sacarlos de firebase
-    Real.on('value', function(snapshot){
+
+function cargarPlatoFuerte(){
+
+    RealFuerte = RealTime.ref().child(`RestauranteData/PlatoFuerte`);
+    RealFuerte.on('value', function(snapshot){
         objeto = snapshot.val()
         for(var data in objeto){
             //creando los datos que van a ser agregados al dom
             const Btn_Borrar = document.createElement('form')
             Btn_Borrar.innerHTML = `
+                <h3>Plato Fuerte</h3>
                 <p>${objeto[data].nombrePlato}</p>
                 
                 <a id=${objeto[data].IDkey} class="borrar">Eliminar<a>
             `
             document.querySelector('#BorrarVue').appendChild(Btn_Borrar)
         }
-    })
-    let BDborrarRef;
 
+        borrarFuerte = document.querySelectorAll('p + a')
+
+        let tipoFuerte = 'PlatoFuerte'
+        for(let i = 0; i < borrarFuerte.length; i++){
+            borrarFuerte[i].addEventListener('click', function(){
+                BorrarPlato(tipoFuerte)
+            })
+        }
+        
+    })
+}
+
+
+function cargarEntrada(){
+
+    RealEntradas = RealTime.ref().child(`RestauranteData/entradas`);
+    RealEntradas.on('value', function(snapshot){
+        objeto = snapshot.val()
+        for(var data in objeto){
+            //creando los datos que van a ser agregados al dom
+            const Btn_Borrar = document.createElement('form')
+            Btn_Borrar.innerHTML = `
+                <h3>Entradas</h3>
+                <p>${objeto[data].nombrePlato}</p>
+                
+                <a id=${objeto[data].IDkey} class="borrar">Eliminar<a>
+            `
+            document.querySelector('#BorrarVue').appendChild(Btn_Borrar)
+        }
+
+        borrarEntrada = document.querySelectorAll('p + a')
+
+        let tipoEntrada = 'entradas'
+        for(let i = 0; i < borrarEntrada.length; i++){
+            borrarEntrada[i].addEventListener('click', function(){
+                BorrarPlato(tipoEntrada)
+            })
+        }
+    })
+}
+
+function cargarBebidas(){
+
+    RealBebidas = RealTime.ref().child(`RestauranteData/bebidas`);
+    RealBebidas.on('value', function(snapshot){
+        objeto = snapshot.val()
+        for(var data in objeto){
+            //creando los datos que van a ser agregados al dom
+            const Btn_Borrar = document.createElement('form')
+            Btn_Borrar.innerHTML = `
+                <h3>Bebidas</h3>
+                <p>${objeto[data].nombrePlato}</p>
+                
+                <a id=${objeto[data].IDkey} class="borrar">Eliminar<a>
+            `
+            document.querySelector('#BorrarVue').appendChild(Btn_Borrar)
+        }
+
+        borrarBebida = document.querySelectorAll('p + a')
+
+        let tipoBebida = 'bebidas'
+        for(let i = 0; i < borrarBebida.length; i++){
+            borrarBebida[i].addEventListener('click', function(){
+                BorrarPlato(tipoBebida)
+            })
+        }
+    })
+}
+
+//ejecuta el proceso de borrado de la base de datos
+function BorrarPlato(tipoPlato){
+    let BDborrarRef;
 
     let dataDOM = document.getElementById("BorrarVue")
     let idDB;
@@ -226,8 +395,6 @@ function BorrarPlato(){
     dataDOM.addEventListener('click', function(eve){
         eve.preventDefault()
         console.log(eve.target.parentElement)
-
-
 
         swal({
             title: "Estas seguro?",
@@ -241,7 +408,7 @@ function BorrarPlato(){
 
                 idDB = eve.target.parentElement.querySelector('a').getAttribute('id')
                 console.log(idDB)
-                BDborrarRef = RealTime.ref("RestauranteData/PlatoFuerte/" + idDB)
+                BDborrarRef = RealTime.ref(`RestauranteData/${tipoPlato}/${idDB}`)
                 BDborrarRef.remove().then(function(){
                     console.log("el plato fue borrado")
                 })

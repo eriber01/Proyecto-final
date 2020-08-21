@@ -48,7 +48,8 @@ const VueEntradas = new Vue({
                     nombre: objeto[propiedad].nombrePlato,
                     precio: objeto[propiedad].precioPlato,
                     descripcion: objeto[propiedad].desPlato,
-                    urlImg: objeto[propiedad].url
+                    urlImg: objeto[propiedad].url,
+                    id: objeto[propiedad].IDkey
                 })
 
             }
@@ -75,7 +76,8 @@ const VueBebidas = new Vue({
                     nombre: objeto[propiedad].nombrePlato,
                     precio: objeto[propiedad].precioPlato,
                     descripcion: objeto[propiedad].desPlato,
-                    urlImg: objeto[propiedad].url
+                    urlImg: objeto[propiedad].url,
+                    id: objeto[propiedad].IDkey
                 })
             }
         })
@@ -142,6 +144,108 @@ document.addEventListener('DOMContentLoaded',function(eve){
                 })
             }
         })
+
+        //entradas 
+
+        RefEntradas.on('value', function(snapshot){
+            data = snapshot.val()
+        
+                for(dat in data){
+                    
+                    console.log(data[dat].IDkey)
+                    //hace referencia al boton de agregar al carrito
+                    const brn_Carrito = document.querySelector(`#${data[dat].IDkey}`)
+    
+                    //evento que se ejecuta al hacer click en el boton agregar carrito
+                    brn_Carrito.addEventListener('click', function(eve){
+                        eve.preventDefault()
+    
+                        const carrito =  eve.target.parentElement.parentElement;
+                        //console.log(carrito)
+                        const dataCarrito = {
+                            nombre: carrito.querySelector('h3').textContent,
+                            precio: carrito.querySelector('span').textContent,
+                            id: carrito.querySelector('img').getAttribute('id')
+                        }
+    
+                        console.log(dataCarrito)
+                        // inserta los datos del plato al carrito
+                        insertarCarrito(dataCarrito)
+                        function insertarCarrito(dataCarrito){
+    
+                            const rowCarrito = document.createElement('tr')
+    
+                            //agrega el templace literal que ira al DOM
+                            rowCarrito.innerHTML = `
+                                <td>${dataCarrito.nombre}</td>
+                                <td>${dataCarrito.precio}</td>
+                                <td><a href="#" id=\"${dataCarrito.id}\" class="borrar">X<a></td>
+                            `;  
+                            
+                            console.log(rowCarrito)
+                            //agregar los datos al dom
+                            
+                            DomCarrito.appendChild(rowCarrito)
+                            
+                            console.log('se agrego el curso')
+                            console.log(DomCarrito.parentNode)
+                            
+                            guardarLocalStorage(dataCarrito)
+                        }
+                    })
+                }
+            })
+
+            //bebidas
+
+            RefBebidas.on('value', function(snapshot){
+            data = snapshot.val()
+        
+                for(dat in data){
+                    
+                    console.log(data[dat].IDkey)
+                    //hace referencia al boton de agregar al carrito
+                    const brn_Carrito = document.querySelector(`#${data[dat].IDkey}`)
+    
+                    //evento que se ejecuta al hacer click en el boton agregar carrito
+                    brn_Carrito.addEventListener('click', function(eve){
+                        eve.preventDefault()
+    
+                        const carrito =  eve.target.parentElement.parentElement;
+                        //console.log(carrito)
+                        const dataCarrito = {
+                            nombre: carrito.querySelector('h3').textContent,
+                            precio: carrito.querySelector('span').textContent,
+                            id: carrito.querySelector('img').getAttribute('id')
+                        }
+    
+                        console.log(dataCarrito)
+                        // inserta los datos del plato al carrito
+                        insertarCarrito(dataCarrito)
+                        function insertarCarrito(dataCarrito){
+    
+                            const rowCarrito = document.createElement('tr')
+    
+                            //agrega el templace literal que ira al DOM
+                            rowCarrito.innerHTML = `
+                                <td>${dataCarrito.nombre}</td>
+                                <td>${dataCarrito.precio}</td>
+                                <td><a href="#" id=\"${dataCarrito.id}\" class="borrar">X<a></td>
+                            `;  
+                            
+                            console.log(rowCarrito)
+                            //agregar los datos al dom
+                            
+                            DomCarrito.appendChild(rowCarrito)
+                            
+                            console.log('se agrego el curso')
+                            console.log(DomCarrito.parentNode)
+                            
+                            guardarLocalStorage(dataCarrito)
+                        }
+                    })
+                }
+            })
     }, 3000)
 
     //carga los datos del localStorage al DOM

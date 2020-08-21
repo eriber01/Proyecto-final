@@ -59,36 +59,110 @@
             <input type="submit" class="enviar" id="btn-subir" value="Subir">
         </form>
         
-        <!-- area para cargar el formulario desde javascrip para Actualiar -->
+
+        <!-- area para cargar el formulario desde vue para Actualiar -->
         <div style="display: none;" id="update-view"> 
-            <div  class="flexible" id="UpdateVue">
+            <!-- carga dinamica para plato fuerte -->
+            <h2>Elija el tipo de plato que desea alterar</h2>
+            <div id="tipoPlato">
+                
+                <!-- seleccion para los platos fuertes -->
+                <div id="selectFuerte">
+                    <span>Plato Fuerte</span>
+                </div>
+                <!-- seleccion para las entradas -->
+                <div id="selectEntrada">
+                    <span>Entradas</span>
+                </div>
+                <!-- seleccion para las bebidas -->
+                <div id="selectBebidas">
+                    <span>Bebidas</span>
+                </div>
 
-                <form action="" v-bind:id="vueUpdate.id" v-for='vueUpdate in VueUpdate' autocomplete="off" aria-required="true">
-                    <label>Datos Actuales del Plato</label>
-    <!--                 <br>
-                    <select name="">
-                        <option value="platoFuerte">Plato Fuerte</option>
-                        <option value="entradas">Entradas</option>
-                        <option value="bebidas">Bebidas</option>
-                    </select> -->
-                    <br>
-                    
-                    <input type="text" v-bind:placeholder="vueUpdate.nombre" aria-required="true">
-                    
-                    <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2" aria-required="true">
-                    
-                    <br>
-                    <label class="lb-img" for="img-platoUpdate">Selecione la nueva imagen del plato</label>
-                    
-                    <br>
+            </div>
+            
 
-                    <textarea name="" v-bind:placeholder="vueUpdate.descripcion" cols="15" rows="5" aria-required="true"></textarea>
-                    
-                    <input type="submit" class="enviar" value="Actualiar">
-                </form>
+            <div class="no" id="vistaFuerte">
+                <h3 style="text-align: center;">Plato Fuerte</h3>
+                <div class="flexible" id="VuePlatoFuerte">
+                    <form action="" v-for='vueUpdate in VFuerteDOM' autocomplete="off" aria-required="true">
+                        <label>Datos Actuales del Plato</label>
+    
+                        <br>
+                        <label for="">Nombre del Plato</label>
+                        <input type="text" v-bind:placeholder="vueUpdate.nombre" aria-required="true">
+                        
+                        <label for="">Precio del Plato</label>
+                        <input type="number" name="" v-bind:placeholder="vueUpdate.precio" id="precio-plato2" aria-required="true">
+                        
+                        <br>
+                        
+                        <textarea name="" v-bind:placeholder="vueUpdate.descripcion" cols="15" rows="5" aria-required="true"></textarea>
+                        
+                        <input type="button" v-bind:id="vueUpdate.id" class="enviar" value="Actualiar">
+                    </form>
+    
+                </div>
+            </div>
+
+            <br>
+            <!-- carga dinamica para entradas -->
+            
+            <div class="no" id="vistaEntrada">
+                <h3 style="text-align: center;">Plato Fuerte</h3>
+                <div class="flexible" id="VueEntradas">
+
+                    <form action="" v-for='vueUpdateEntrada in VEntradaDOM' autocomplete="off" aria-required="true">
+                        <label>Datos Actuales del Plato</label>
+
+                        <br>
+                        <label for="">Nombre del Plato</label>
+                        <input type="text" v-bind:placeholder="vueUpdateEntrada.nombre" aria-required="true">
+                        
+                        <label for="">Precio del Plato</label>
+                        <input type="number" name="" v-bind:placeholder="vueUpdateEntrada.precio" id="precio-plato2" aria-required="true">
+                        
+                        <br>
+                        
+                        <textarea name="" v-bind:placeholder="vueUpdateEntrada.descripcion" cols="15" rows="5" aria-required="true"></textarea>
+                        
+                        <input type="button" v-bind:id="vueUpdateEntrada.id"  class="enviar" value="Actualiar">
+                    </form>
+
+                </div>
+            </div>
+            <!-- carga dinamica para bebidas -->
+
+            
+            <div class="no" id="vistaBebida">
+                <h3 style="text-align: center;">Bebidas</h3>
+                <div class="flexible" id="VueBebidas">
+                    <form action="" v-for='vueUpdateBebidas in VBebidasDOM' autocomplete="off" aria-required="true">
+                        <label>Datos Actuales del Plato</label>
+
+                        <br>
+                        <label for="">Nombre del Plato</label>
+                        <input type="text" v-bind:placeholder="vueUpdateBebidas.nombre" aria-required="true">
+                        
+                        <label for="">Precio del Plato</label>
+                        <input type="number" name="" v-bind:placeholder="vueUpdateBebidas.precio" id="precio-plato2" aria-required="true">
+                        
+                        <br>
+                        
+                        <textarea name="" v-bind:placeholder="vueUpdateBebidas.descripcion" cols="15" rows="5" aria-required="true"></textarea>
+                        
+                        <input type="button" v-bind:id="vueUpdateBebidas.id"  class="enviar" value="Actualiar">
+                    </form>
+
+                </div>
+            </div>
+            
+            <br>
 
             </div>
         </div>
+
+        <!-- Area para la eleccion del tipo de plato que sera editado -->
 
         <!-- area para cargar el formulario desde javascrip para Borrar -->
         <div style="display: none;"  id="borrar-view">
@@ -103,7 +177,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="main/FirebaseInitializeApp.js"></script>
     <script src="main/FirebaseCMS data.js"></script>
-
+    <script src="main/VueCMS.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </body>
