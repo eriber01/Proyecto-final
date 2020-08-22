@@ -3,6 +3,8 @@ const RefPLatoFuerte = firebase.database().ref().child('RestauranteData/PlatoFue
 const RefEntradas = firebase.database().ref().child('RestauranteData/entradas')
 const RefBebidas = firebase.database().ref().child('RestauranteData/bebidas')
 
+const RefOrdenar =  firebase.database().ref().child('RestauranteData/Orden')
+
 //instancia de vue para los platos fuertes
 const VuePlatoFuerte = new Vue({
     el: "#VuePlatoFuerte",
@@ -89,6 +91,7 @@ const VueBebidas = new Vue({
 //variables
 const DomCarrito = document.querySelector('#lista-carrito tbody')
 const DomTotal = document.querySelector('#total tbody')
+//const AlertOrden = new Carrito();
 
 document.addEventListener('DOMContentLoaded',function(eve){
     //esta funcion se cargar de esperar a que cargue todo en el DOM antes crear los eventos
@@ -391,10 +394,11 @@ const confirmaOrden = document.getElementById('ordenar').addEventListener('click
                 swal("Listo su orden esta en camino!", {
                 icon: "success",
             });
-            setTimeout(function(){
-                
-                
-            }, 2000)
+            
+            RefOrdenar.push({
+                orden: 1
+            })
+
             } else {
                 swal("Los platos siguen como los dejo!");
             }
