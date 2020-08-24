@@ -92,9 +92,7 @@
             <!--Seccion de los platos fuertes-->
 
             <div class="plato-fuerte" id="VuePlatoFuerte">
-
                     <div class="card-food" v-for="Vfuerte in VFuerteDOM">
-                        
                         <div class="agregar-carrito">
                             <p>Precio: <span>{{Vfuerte.precio}}</span></p>
                             <img v-bind:id = "Vfuerte.id" class="agregar-img" src="img/ico/anadir.png" alt="ico agregar">
@@ -106,8 +104,6 @@
                             <h3>{{Vfuerte.nombre}}</h3>
                             <p>{{Vfuerte.descripcion}}</p>
                         </div>
-
-                        
                     </div>
             </div>
 

@@ -26,7 +26,6 @@ const VuePlatoFuerte = new Vue({
                         urlImg: objeto[propiedad].url,
                         id: objeto[propiedad].IDkey
                     })
-
                 }
             });
     }
